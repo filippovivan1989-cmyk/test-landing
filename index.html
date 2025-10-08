@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Стоматология — демо для интеграций (SMB)</title>
+  <meta name="description" content="Простой одностраничный сайт стоматологии для тестов интеграций и демо-показов.">
+  <style>
+    :root{
+      --bg:#f7f9fb;
+      --card:#ffffff;
+      --text:#1f2a37;
+      --muted:#6b7280;
+      --brand:#2f7de1;
+      --accent:#10b981;
+      --danger:#ef4444;
+      --ring: rgba(47,125,225,.35);
+      --radius:14px;
+      --shadow:0 6px 24px rgba(0,0,0,.06);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;color:var(--text);background:var(--bg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,'Helvetica Neue',Arial,'Noto Sans',sans-serif;line-height:1.5}
+    a{color:var(--brand);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1100px;margin:0 auto;padding:0 18px}
+    header{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid #e5e7eb}
+    .topbar{display:flex;align-items:center;justify-content:space-between;padding:10px 0;gap:12px}
+    .brand{display:flex;align-items:center;gap:10px}
+    .brand svg{width:36px;height:36px}
+    .brand h1{font-size:18px;margin:0}
+    .contacts{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+    .contacts a{font-weight:600}
+    .cta{display:flex;align-items:center;gap:8px}
+    .cta button{border:0;background:var(--accent);color:#fff;padding:10px 14px;border-radius:10px;font-weight:700;cursor:pointer}
+    .cta button:focus{outline:3px solid var(--ring);outline-offset:2px}
+    .hero{padding:48px 0}
+    .hero .panel{background:linear-gradient(180deg,#fff, #f4f7fb);border:1px solid #e5e7eb;border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);display:grid;grid-template-columns:1.2fr .8fr;gap:24px}
+    .hero h2{margin:0 0 10px;font-size:30px}
+    .hero p{margin:0 0 16px;color:var(--muted)}
+    .hero .quick{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+    .badge{display:inline-flex;gap:8px;align-items:center;background:#eef5ff;border:1px solid #dbe7ff;padding:8px 10px;border-radius:999px;font-size:14px}
+    .card{background:var(--card);border:1px solid #e5e7eb;border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+    .illus{display:flex;align-items:center;justify-content:center}
+    .illus svg{max-width:260px;width:100%;height:auto}
+    section{padding:28px 0}
+    .grid{display:grid;gap:16px}
+    .grid-3{grid-template-columns:repeat(3,1fr)}
+    .grid-4{grid-template-columns:repeat(4,1fr)}
+    .adv .item h3{margin:8px 0 6px;font-size:18px}
+    .muted{color:var(--muted)}
+    .prices .plan{display:flex;flex-direction:column;gap:8px}
+    .prices .price{font-size:28px;font-weight:800}
+    .btn{display:inline-block;background:var(--brand);color:#fff;border:0;border-radius:12px;padding:10px 14px;font-weight:700;cursor:pointer}
+    .btn.alt{background:#fff;color:var(--brand);border:1px solid var(--brand)}
+    .btn:focus{outline:3px solid var(--ring);outline-offset:2px}
+    .form{display:grid;gap:12px}
+    .form label{font-weight:600}
+    .form input,.form textarea{width:100%;padding:12px 12px;border:1px solid #e5e7eb;border-radius:10px;background:#fff}
+    .form input:focus,.form textarea:focus{outline:3px solid var(--ring);border-color:var(--brand)}
+    .req{color:var(--danger)}
+    footer{border-top:1px solid #e5e7eb;background:#fff;padding:20px 0;color:var(--muted)}
+    .small{font-size:12px}
+    /* адаптив */
+    @media (max-width:900px){
+      .hero .panel{grid-template-columns:1fr}
+      .grid-4{grid-template-columns:repeat(2,1fr)}
+      .grid-3{grid-template-columns:1fr}
+    }
+  </style>
+
+  <!-- MANGO DKT: сюда вставить код коллтрекинга -->
+</head>
+<body>
+  <header>
+    <div class="wrap topbar">
+      <div class="brand" aria-label="Логотип стоматологии">
+        <!-- Встроенный SVG логотип -->
+        <svg viewBox="0 0 64 64" role="img" aria-label="Логотип зуб">
+          <defs>
+            <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#2f7de1"/><stop offset="1" stop-color="#10b981"/>
+            </linearGradient>
+          </defs>
+          <path d="M32 6c9 0 18 6 18 17 0 12-7 22-10 31-2 6-8 5-11 0-3-6-5-12-7-17-1-3-4-3-6-5-3-3-4-7-4-10C12 12 21 6 32 6Z" fill="url(#g)"/>
+          <circle cx="40" cy="21" r="3" fill="#fff"/>
+        </svg>
+        <h1>Стоматология «Практика» — демо</h1>
+      </div>
+      <div class="contacts">
+        <a href="tel:+74950000000" aria-label="Позвонить в клинику">+7&nbsp;(495)&nbsp;000-00-00</a>
+        <span class="muted">•</span>
+        <!-- Ссылка email с трекингом -->
+        <a href="mailto:sales@example.com" data-email-track="hero">Написать</a>
+      </div>
+      <div class="cta">
+        <!-- Кнопка заказа звонка с data-маячком -->
+        <button data-cta="callback" aria-label="Заказать обратный звонок">Заказать звонок</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap">
+        <div class="panel">
+          <div>
+            <h2>Спокойное лечение зубов без очередей</h2>
+            <p>Проверка сценариев: звонок, заявка, email. Страница сделана для тестов интеграций и демо-показов.</p>
+            <div class="quick">
+              <span class="badge" title="Адрес">
+                <!-- pin -->
+                <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"/></svg>
+                ул. Примерная, 10
+              </span>
+              <span class="badge" title="Время работы">
+                <!-- clock -->
+                <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 1.75a10.25 10.25 0 1 0 0 20.5 10.25 10.25 0 0 0 0-20.5Zm.75 5.5a.75.75 0 0 0-1.5 0V12c0 .2.08.39.22.53l3.25 3.25a.75.75 0 1 0 1.06-1.06l-3.03-3.03V7.25Z"/></svg>
+                Ежедневно 9:00–21:00
+              </span>
+              <a class="btn alt" href="#fos">Оставить заявку</a>
+              <button class="btn" data-cta="callback">Заказать звонок</button>
+            </div>
+          </div>
+          <div class="illus card" aria-hidden="true">
+            <!-- иллюстрация зуба/инструмента -->
+            <svg viewBox="0 0 320 220">
+              <rect x="10" y="10" width="300" height="200" rx="16" fill="#fff"/>
+              <g opacity=".08">
+                <circle cx="80" cy="80" r="60" fill="#2f7de1"/>
+                <circle cx="220" cy="120" r="70" fill="#10b981"/>
+              </g>
+              <g transform="translate(95,40)">
+                <path d="M65 0c23 0 45 15 45 42 0 30-18 55-26 78-6 16-20 14-28 0-8-16-12-30-16-42-2-7-9-8-14-12-7-6-10-14-10-22C16 16 38 0 65 0z" fill="#2f7de1"/>
+                <circle cx="87" cy="35" r="8" fill="#fff"/>
+              </g>
+              <g transform="translate(200,40)">
+                <rect x="0" y="0" width="10" height="80" rx="4" fill="#2f7de1"/>
+                <rect x="12" y="0" width="10" height="80" rx="4" fill="#10b981"/>
+                <rect x="24" y="0" width="10" height="80" rx="4" fill="#2f7de1"/>
+                <rect x="36" y="0" width="10" height="80" rx="4" fill="#10b981"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Преимущества -->
+    <section class="adv">
+      <div class="wrap">
+        <h2>Почему удобно</h2>
+        <div class="grid grid-4">
+          <div class="item card">
+            <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="m9 16.2-3.5-3.5-1.4 1.4L9 19 20.3 7.7l-1.4-1.4z"/></svg>
+            <h3>Чёткие цены</h3>
+            <p class="muted">Стоимость обозначаем заранее по прайс-листу. Для демо: можно проверить события кликов.</p>
+          </div>
+          <div class="item card">
+            <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2 2 7l10 5 10-5-10-5Zm0 9L2 6v11l10 5 10-5V6l-10 5Z"/></svg>
+            <h3>Рентген на месте</h3>
+            <p class="muted">Диагностика без перенаправлений. Подходит для тестов форм и UTM.</p>
+          </div>
+          <div class="item card">
+            <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 6h18v2H3V6Zm0 5h12v2H3v-2Zm0 5h18v2H3v-2Z"/></svg>
+            <h3>Запись онлайн</h3>
+            <p class="muted">Кнопки ведут на форму ниже. События логируются в консоль для проверки.</p>
+          </div>
+          <div class="item card">
+            <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 1.75A10.25 10.25 0 1 0 22.25 12 10.26 10.26 0 0 0 12 1.75Zm0 18a7.75 7.75 0 1 1 7.75-7.75A7.76 7.76 0 0 1 12 19.75Z"/><path fill="currentColor" d="M12.75 7.25h-1.5v5l4.25 2.55.75-1.23-3.5-2.07V7.25Z"/></svg>
+            <h3>Без ожидания</h3>
+            <p class="muted">Чёткие слоты. На демо легко отловить отправки формы и клики.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Тарифы -->
+    <section class="prices">
+      <div class="wrap">
+        <h2>Тарифы</h2>
+        <div class="grid grid-3">
+          <div class="plan card">
+            <h3>Осмотр и гигиена</h3>
+            <p class="price">2 900 ₽</p>
+            <p class="muted">Консультация, снимок по показаниям, базовая чистка.</p>
+            <button class="btn" data-cta="callback">Заказать звонок</button>
+          </div>
+          <div class="plan card">
+            <h3>Лечение кариеса</h3>
+            <p class="price">5 900 ₽</p>
+            <p class="muted">Анестезия, пломба, шлифовка. Прозрачный расчёт.</p>
+            <a class="btn alt" href="#fos">Оставить заявку</a>
+          </div>
+          <div class="plan card">
+            <h3>Профессиональная чистка</h3>
+            <p class="price">4 500 ₽</p>
+            <p class="muted">Air-Flow, полировка и рекомендации по уходу.</p>
+            <button class="btn" data-cta="callback">Заказать звонок</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Контакты / ФОС -->
+    <section class="contacts">
+      <div class="wrap">
+        <div class="card">
+          <h2 id="fos-title">Контакты и заявка</h2>
+          <p class="muted">Заполните форму. Для теста интеграций отправка не уходит на сервер — события пишутся в консоль.</p>
+
+          <!-- Контактная форма с data-маячком -->
+          <form id="fos" data-form="fos" aria-labelledby="fos-title" novalidate>
+            <div class="form">
+              <div>
+                <label for="name">Имя <span class="req" aria-hidden="true">*</span></label>
+                <input id="name" name="name" placeholder="Как к вам обращаться" required />
+              </div>
+              <div>
+                <label for="phone">Телефон <span class="req" aria-hidden="true">*</span></label>
+                <input id="phone" name="phone" type="tel" inputmode="tel" placeholder="+7 900 000-00-00" required />
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="you@example.com" />
+              </div>
+              <div>
+                <label for="comment">Комментарий</label>
+                <textarea id="comment" name="comment" rows="4" placeholder="Коротко опишите запрос"></textarea>
+              </div>
+              <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+                <button type="submit" class="btn">Отправить</button>
+                <button type="button" class="btn alt" data-cta="callback">Заказать звонок</button>
+                <span class="small muted">Нажимая «Отправить», вы соглашаетесь на обработку данных.</span>
+              </div>
+            </div>
+          </form>
+
+          <hr style="margin:18px 0;border:0;border-top:1px solid #e5e7eb">
+          <div class="grid" style="grid-template-columns:1fr 1fr;gap:12px">
+            <div>
+              <strong>Телефон:</strong> <a href="tel:+74950000000">+7&nbsp;(495)&nbsp;000-00-00</a><br>
+              <strong>Email:</strong> <a href="mailto:sales@example.com" data-email-track="contact">sales@example.com</a><br>
+              <strong>Адрес:</strong> ул. Примерная, 10
+            </div>
+            <div class="small muted">
+              Для демонстрации доступны UTM-метки в URL, отслеживание кликов по кнопкам и письмам, логирование отправки формы в консоль.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+        <span>© 2025 Стоматология «Практика» (демо)</span>
+        <span class="small">Публичная оферта и политика конфиденциальности — демонстрационные.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Демо-логика: preventDefault формы, трекинг кликов, UTM/реф лог
+    (function(){
+      // UTM лог
+      const params = new URLSearchParams(location.search);
+      if (params.toString()) {
+        console.log('[UTM]', Object.fromEntries(params.entries()));
+      }
+
+      // Обработчики кнопок "Заказать звонок"
+      document.querySelectorAll('button[data-cta="callback"]').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          console.log('[CTA/callback] click', {
+            text: btn.textContent.trim(),
+            section: findSection(btn),
+            ts: new Date().toISOString()
+          });
+          // Точка интеграции: здесь можно вызвать окно обратного звонка
+        });
+      });
+
+      // Трекинг кликов по email-ссылкам
+      document.querySelectorAll('a[href^="mailto:"][data-email-track]')
+        .forEach(function(link){
+          link.addEventListener('click', function(){
+            console.log('[EMAIL] click', {
+              href: link.getAttribute('href'),
+              place: link.getAttribute('data-email-track'),
+              ts: new Date().toISOString()
+            });
+          });
+        });
+
+      // Обработка формы ФОС
+      const form = document.getElementById('fos');
+      if (form) {
+        form.addEventListener('submit', function(e){
+          e.preventDefault(); // preventDefault — отправка на сервер не выполняется
+          const data = Object.fromEntries(new FormData(form).entries());
+          console.log('[FOS] submit', {
+            data,
+            valid: validate(data),
+            ts: new Date().toISOString()
+          });
+          // Небольшой UX-отклик
+          toast('Заявка сохранена локально для демо. Проверьте консоль.');
+          form.reset();
+        });
+      }
+
+      // Вспомогательные функции
+      function validate(d){
+        const okName = (d.name||'').trim().length>1;
+        const okPhone = /\d{6,}/.test((d.phone||'').replace(/\D/g,''));
+        const okEmail = !d.email || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email);
+        return {okName, okPhone, okEmail, all: okName && okPhone && okEmail};
+      }
+      function findSection(el){
+        const sec = el.closest('section');
+        return sec ? (sec.className||'').split(' ')[0] || 'section' : 'unknown';
+      }
+      function toast(msg){
+        let t = document.createElement('div');
+        t.textContent = msg;
+        t.setAttribute('role','status');
+        Object.assign(t.style,{
+          position:'fixed',left:'50%',bottom:'24px',transform:'translateX(-50%)',
+          background:'#111827',color:'#fff',padding:'10px 14px',borderRadius:'10px',
+          boxShadow:'0 8px 24px rgba(0,0,0,.18)',zIndex:9999,fontSize:'14px'
+        });
+        document.body.appendChild(t);
+        setTimeout(()=>t.remove(),2600);
+      }
+    })();
+  </script>
+
+  <!-- MANGO DIALOGS: сюда вставить код чата -->
+  <!-- MANGO DKT: сюда вставить код коллтрекинга -->
+</body>
+</html>
