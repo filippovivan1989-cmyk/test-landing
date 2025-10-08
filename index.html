@@ -1,682 +1,105 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Стоматология Улыбка - профессиональный уход за зубами</title>
-    <style>
-        :root {
-            --primary: #e8f4f8;
-            --secondary: #b8d8e0;
-            --accent: #5a9aa8;
-            --text: #2c3e50;
-            --light: #ffffff;
-            --shadow: rgba(92, 154, 168, 0.15);
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-        
-        body {
-            background-color: var(--primary);
-            color: var(--text);
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Шапка */
-        header {
-            background-color: var(--light);
-            box-shadow: 0 2px 10px var(--shadow);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            fill: var(--accent);
-        }
-        
-        .logo-text {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--accent);
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-        
-        nav a {
-            text-decoration: none;
-            color: var(--text);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        nav a:hover {
-            color: var(--accent);
-        }
-        
-        .contacts-header {
-            display: flex;
-            flex-direction: column;
-            text-align: right;
-        }
-        
-        .phone {
-            font-weight: bold;
-            font-size: 1.1rem;
-            color: var(--accent);
-        }
-        
-        .email {
-            font-size: 0.9rem;
-            color: var(--text);
-        }
-        
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--accent);
-        }
-        
-        /* Hero секция */
-        .hero {
-            padding: 150px 0 100px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            text-align: center;
-        }
-        
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--text);
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
-            color: var(--text);
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: var(--light);
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-        
-        .btn:hover {
-            background-color: #4a8a98;
-        }
-        
-        /* Преимущества */
-        .features {
-            padding: 80px 0;
-            background-color: var(--light);
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-            font-size: 2rem;
-            color: var(--text);
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-        
-        .feature-card {
-            background-color: var(--primary);
-            padding: 30px;
-            border-radius: 10px;
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px var(--shadow);
-        }
-        
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 20px;
-            fill: var(--accent);
-        }
-        
-        .feature-card h3 {
-            margin-bottom: 15px;
-            color: var(--text);
-        }
-        
-        /* Услуги */
-        .services {
-            padding: 80px 0;
-            background-color: var(--primary);
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .service-card {
-            background-color: var(--light);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px var(--shadow);
-            transition: transform 0.3s;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .service-icon {
-            width: 100%;
-            height: 200px;
-            background-color: var(--secondary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .service-icon svg {
-            width: 80px;
-            height: 80px;
-            fill: var(--accent);
-        }
-        
-        .service-content {
-            padding: 25px;
-        }
-        
-        .service-content h3 {
-            margin-bottom: 15px;
-            color: var(--text);
-        }
-        
-        /* Контактная форма */
-        .contact {
-            padding: 80px 0;
-            background-color: var(--light);
-        }
-        
-        .contact-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: start;
-        }
-        
-        .contact-info h3 {
-            margin-bottom: 20px;
-            color: var(--text);
-        }
-        
-        .contact-details {
-            margin-bottom: 30px;
-        }
-        
-        .contact-details p {
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .contact-icon {
-            width: 20px;
-            height: 20px;
-            fill: var(--accent);
-        }
-        
-        .contact-form {
-            background-color: var(--primary);
-            padding: 30px;
-            border-radius: 10px;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-        
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid var(--secondary);
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-        
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--accent);
-        }
-        
-        .form-group textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-        
-        /* Подвал */
-        footer {
-            background-color: var(--text);
-            color: var(--light);
-            padding: 50px 0 20px;
-        }
-        
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 30px;
-        }
-        
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-        
-        .footer-logo svg {
-            width: 30px;
-            height: 30px;
-            fill: var(--light);
-        }
-        
-        .footer-contacts p {
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9rem;
-        }
-        
-        /* Адаптивность */
-        @media (max-width: 992px) {
-            .contact-wrapper {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                flex-direction: column;
-                gap: 30px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            nav ul {
-                display: none;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .header-content {
-                flex-wrap: wrap;
-            }
-            
-            .contacts-header {
-                margin-left: auto;
-                margin-right: 15px;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .hero {
-                padding: 120px 0 80px;
-            }
-            
-            .features,
-            .services,
-            .contact {
-                padding: 60px 0;
-            }
-            
-            .section-title {
-                font-size: 1.7rem;
-            }
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NeoSmile — Стоматология будущего</title>
+<style>
+body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#eef2ff;background:linear-gradient(180deg,#0e0f1a,#15172b);line-height:1.6}
+.wrap{max-width:1100px;margin:auto;padding:20px}
+header,footer{background:rgba(14,15,26,.8);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.1);color:#fff}
+header .top,footer .bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700}
+.logo svg{width:28px;height:28px}
+.menu a{color:#22d3ee;margin:0 10px;text-decoration:none}
+.menu a:hover{text-decoration:underline}
+.hero{padding:80px 20px;text-align:center}
+.hero h1{font-size:40px;margin:10px 0}
+.hero p{color:#a9b2c7;max-width:600px;margin:auto}
+section{padding:60px 20px}
+.features,.pricing,.reviews{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.card{background:#16182a;padding:20px;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.card h3{color:#22d3ee}
+.review p{font-style:italic}
+form{max-width:500px;margin:auto;display:grid;gap:10px}
+input,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #333;background:#0e0f1a;color:#fff}
+button{background:#22d3ee;color:#000;padding:10px;border:none;border-radius:8px;cursor:pointer}
+button:hover{opacity:.8}
+footer{border-top:1px solid rgba(255,255,255,.1);text-align:center;padding:20px 0;margin-top:40px}
+@media(max-width:600px){.menu{display:none}}
+</style>
 </head>
 <body>
-    <!-- Шапка -->
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <svg class="logo-icon" viewBox="0 0 24 24">
-                        <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M7.07,18.28C7.5,17.38 8.5,16.5 9.31,16.31C10.13,16.11 11.25,16.36 12,16.79C12.75,16.36 13.88,16.11 14.69,16.31C15.5,16.5 16.5,17.38 16.93,18.28C15.57,19.36 13.86,20 12,20C10.14,20 8.43,19.36 7.07,18.28M8.5,13.5C7.67,13.5 7,12.83 7,12C7,11.17 7.67,10.5 8.5,10.5C9.33,10.5 10,11.17 10,12C10,12.83 9.33,13.5 8.5,13.5M15.5,13.5C14.67,13.5 14,12.83 14,12C14,11.17 14.67,10.5 15.5,10.5C16.33,10.5 17,11.17 17,12C17,12.83 16.33,13.5 15.5,13.5M12,9C10.74,9 9.6,8.43 8.88,7.53C8.16,6.63 8,5.46 8.34,4.34C8.68,3.22 9.58,2.5 10.5,2.5C11.42,2.5 12.32,3.22 12.66,4.34C13,5.46 12.84,6.63 12.12,7.53C11.4,8.43 10.26,9 12,9Z"/>
-                    </svg>
-                    <span class="logo-text">Стоматология Улыбка</span>
-                </div>
-                
-                <nav>
-                    <ul>
-                        <li><a href="#hero">Главная</a></li>
-                        <li><a href="#features">Преимущества</a></li>
-                        <li><a href="#services">Услуги</a></li>
-                        <li><a href="#contact">Контакты</a></li>
-                    </ul>
-                </nav>
-                
-                <div class="contacts-header">
-                    <span class="phone">+7 (495) 123-45-67</span>
-                    <span class="email">info@stom-ulybka.ru</span>
-                </div>
-                
-                <button class="mobile-menu-btn">☰</button>
-            </div>
-        </div>
-    </header>
+<header>
+ <div class="wrap top">
+  <div class="logo">
+   <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="#22d3ee"/></svg>
+   NeoSmile
+  </div>
+  <nav class="menu">
+   <a href="#hero">Главная</a>
+   <a href="#features">Услуги</a>
+   <a href="#pricing">Тарифы</a>
+   <a href="#reviews">Отзывы</a>
+   <a href="#contacts">Контакты</a>
+  </nav>
+  <div class="contacts">📞 +7 (999) 555‑33‑22 | ✉️ hello@demo.ru</div>
+ </div>
+</header>
 
-    <!-- Hero секция -->
-    <section class="hero" id="hero">
-        <div class="container">
-            <h1>Здоровая улыбка — наша профессия</h1>
-            <p>Современная стоматология с заботой о вашем комфорте. Мы используем передовые технологии для сохранения здоровья ваших зубов на долгие годы.</p>
-            <a href="#contact" class="btn">Записаться на приём</a>
-        </div>
-    </section>
+<section id="hero" class="hero">
+ <h1>Современная стоматология с заботой о каждой улыбке</h1>
+ <p>Мы используем инновационные технологии и создаём комфортную атмосферу для пациентов. Этот сайт — демонстрационная версия наших решений для стоматологических клиник.</p>
+ <button onclick="document.getElementById('contacts').scrollIntoView({behavior:'smooth'})">Записаться на консультацию</button>
+</section>
 
-    <!-- Преимущества -->
-    <section class="features" id="features">
-        <div class="container">
-            <h2 class="section-title">Наши преимущества</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <svg class="feature-icon" viewBox="0 0 24 24">
-                        <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11.5C14.8,13.1 13.4,14.7 12,14.7C10.6,14.7 9.2,13.1 9.2,11.5V10C9.2,8.6 10.6,7 12,7M12,8.2C11.2,8.2 10.5,8.7 10.5,9.5V11.5C10.5,12.3 11.2,12.8 12,12.8C12.8,12.8 13.5,12.3 13.5,11.5V9.5C13.5,8.7 12.8,8.2 12,8.2Z"/>
-                    </svg>
-                    <h3>Безопасность и стерильность</h3>
-                    <p>Строгие протоколы дезинфекции и стерилизации для вашей безопасности</p>
-                </div>
-                
-                <div class="feature-card">
-                    <svg class="feature-icon" viewBox="0 0 24 24">
-                        <path d="M19.43,12.98C19.47,12.66 19.5,12.34 19.5,12C19.5,11.66 19.47,11.34 19.43,11.02L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.22,8.95 2.27,9.22 2.46,9.37L4.57,11.02C4.53,11.34 4.5,11.66 4.5,12C4.5,12.34 4.53,12.66 4.57,12.98L2.46,14.63C2.27,14.78 2.22,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.68 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.98Z"/>
-                    </svg>
-                    <h3>Современное оборудование</h3>
-                    <p>Используем новейшие технологии для точной диагностики и эффективного лечения</p>
-                </div>
-                
-                <div class="feature-card">
-                    <svg class="feature-icon" viewBox="0 0 24 24">
-                        <path d="M12,2C13.1,2 14,2.9 14,4C14,5.1 13.1,6 12,6C10.9,6 10,5.1 10,4C10,2.9 10.9,2 12,2M21,9V20A2,2 0 0,1 19,22H5A2,2 0 0,1 3,20V9A2,2 0 0,1 5,7H19A2,2 0 0,1 21,9M16,2V4H14V2H16M18,2V4H16V2H18M20,2V4H18V2H20M18,12L15,9L12,12L13.5,13.5L12,15L15,18L18,15L16.5,13.5L18,12M8,12L11,9L14,12L12.5,13.5L14,15L11,18L8,15L9.5,13.5L8,12Z"/>
-                    </svg>
-                    <h3>Опытные специалисты</h3>
-                    <p>Наши врачи регулярно повышают квалификацию и имеют многолетний опыт работы</p>
-                </div>
-                
-                <div class="feature-card">
-                    <svg class="feature-icon" viewBox="0 0 24 24">
-                        <path d="M12,20A6,6 0 0,1 6,14C6,10 12,3.25 12,3.25C12,3.25 18,10 18,14A6,6 0 0,1 12,20Z"/>
-                    </svg>
-                    <h3>Удобное расположение</h3>
-                    <p>Наша клиника находится в центре города с удобной транспортной доступностью</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<section id="features" class="wrap">
+ <h2>Наши направления</h2>
+ <div class="features">
+  <div class="card"><h3>Имплантация</h3><p>Современные системы имплантов и точное цифровое моделирование.</p></div>
+  <div class="card"><h3>Отбеливание</h3><p>Безопасное и эффективное отбеливание без чувствительности зубов.</p></div>
+  <div class="card"><h3>Ортодонтия</h3><p>Исправление прикуса с помощью прозрачных элайнеров и брекетов.</p></div>
+  <div class="card"><h3>Профилактика</h3><p>Регулярные осмотры и гигиенические процедуры для здоровья зубов.</p></div>
+ </div>
+</section>
 
-    <!-- Услуги -->
-    <section class="services" id="services">
-        <div class="container">
-            <h2 class="section-title">Наши услуги</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M12,2C13.1,2 14,2.9 14,4C14,5.1 13.1,6 12,6C10.9,6 10,5.1 10,4C10,2.9 10.9,2 12,2M21,9V20A2,2 0 0,1 19,22H5A2,2 0 0,1 3,20V9A5,5 0 0,1 8,4H16A5,5 0 0,1 21,9M11,10H13V12H15V14H13V16H11V14H9V12H11V10Z"/>
-                        </svg>
-                    </div>
-                    <div class="service-content">
-                        <h3>Терапевтическая стоматология</h3>
-                        <p>Лечение кариеса, пульпита, периодонтита и других заболеваний зубов с использованием современных материалов</p>
-                    </div>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M12,2C13.1,2 14,2.9 14,4C14,5.1 13.1,6 12,6C10.9,6 10,5.1 10,4C10,2.9 10.9,2 12,2M21,9V20A2,2 0 0,1 19,22H5A2,2 0 0,1 3,20V9A5,5 0 0,1 8,4H16A5,5 0 0,1 21,9M16,10L15,9L12,12L9,9L8,10L11,13L8,16L9,17L12,14L15,17L16,16L13,13L16,10Z"/>
-                        </svg>
-                    </div>
-                    <div class="service-content">
-                        <h3>Отбеливание зубов</h3>
-                        <p>Профессиональное отбеливание с гарантированным результатом без вреда для эмали</p>
-                    </div>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M12,2C13.1,2 14,2.9 14,4C14,5.1 13.1,6 12,6C10.9,6 10,5.1 10,4C10,2.9 10.9,2 12,2M21,9V20A2,2 0 0,1 19,22H5A2,2 0 0,1 3,20V9A5,5 0 0,1 8,4H16A5,5 0 0,1 21,9M15,13L12,16L9,13H11V9H13V13H15Z"/>
-                        </svg>
-                    </div>
-                    <div class="service-content">
-                        <h3>Протезирование</h3>
-                        <p>Восстановление утраченных зубов с помощью современных методов протезирования</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<section id="pricing" class="wrap">
+ <h2>Тарифы</h2>
+ <div class="pricing">
+  <div class="card"><h3>Базовый</h3><p>3 500 ₽</p><p>Консультация и первичная диагностика.</p></div>
+  <div class="card"><h3>Оптимальный</h3><p>9 900 ₽</p><p>Комплексное лечение и профилактика.</p></div>
+  <div class="card"><h3>Премиум</h3><p>По запросу</p><p>Персональный план, полное сопровождение.</p></div>
+ </div>
+</section>
 
-    <!-- Контактная форма -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <h2 class="section-title">Записаться на приём</h2>
-            <div class="contact-wrapper">
-                <div class="contact-info">
-                    <h3>Наши контакты</h3>
-                    <div class="contact-details">
-                        <p>
-                            <svg class="contact-icon" viewBox="0 0 24 24">
-                                <path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"/>
-                            </svg>
-                            +7 (495) 123-45-67
-                        </p>
-                        <p>
-                            <svg class="contact-icon" viewBox="0 0 24 24">
-                                <path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"/>
-                            </svg>
-                            info@stom-ulybka.ru
-                        </p>
-                        <p>
-                            <svg class="contact-icon" viewBox="0 0 24 24">
-                                <path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z"/>
-                            </svg>
-                            г. Москва, ул. Стоматологическая, д. 15
-                        </p>
-                    </div>
-                    <p>Мы работаем с понедельника по субботу с 9:00 до 21:00</p>
-                </div>
-                
-                <div class="contact-form">
-                    <form id="appointment-form">
-                        <div class="form-group">
-                            <label for="name">Ваше имя</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="phone">Телефон</label>
-                            <input type="tel" id="phone" name="phone" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Сообщение (необязательно)</label>
-                            <textarea id="message" name="message" placeholder="Укажите желаемую дату и услугу"></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn">Отправить заявку</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+<section id="reviews" class="wrap">
+ <h2>Отзывы клиентов</h2>
+ <div class="reviews">
+  <div class="card review"><p>“Отличная клиника! Всё современно и без боли. Теперь рекомендую всем друзьям.”</p><strong>— Марина К.</strong></div>
+  <div class="card review"><p>“Быстро, качественно и по разумной цене. Понравилось отношение врачей.”</p><strong>— Алексей П.</strong></div>
+  <div class="card review"><p>“Приятная атмосфера и профессионалы своего дела. Буду приходить снова.”</p><strong>— Екатерина Л.</strong></div>
+ </div>
+</section>
 
-    <!-- Подвал -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M7.07,18.28C7.5,17.38 8.5,16.5 9.31,16.31C10.13,16.11 11.25,16.36 12,16.79C12.75,16.36 13.88,16.11 14.69,16.31C15.5,16.5 16.5,17.38 16.93,18.28C15.57,19.36 13.86,20 12,20C10.14,20 8.43,19.36 7.07,18.28M8.5,13.5C7.67,13.5 7,12.83 7,12C7,11.17 7.67,10.5 8.5,10.5C9.33,10.5 10,11.17 10,12C10,12.83 9.33,13.5 8.5,13.5M15.5,13.5C14.67,13.5 14,12.83 14,12C14,11.17 14.67,10.5 15.5,10.5C16.33,10.5 17,11.17 17,12C17,12.83 16.33,13.5 15.5,13.5M12,9C10.74,9 9.6,8.43 8.88,7.53C8.16,6.63 8,5.46 8.34,4.34C8.68,3.22 9.58,2.5 10.5,2.5C11.42,2.5 12.32,3.22 12.66,4.34C13,5.46 12.84,6.63 12.12,7.53C11.4,8.43 10.26,9 12,9Z"/>
-                    </svg>
-                    <span>Стоматология Улыбка</span>
-                </div>
-                
-                <div class="footer-contacts">
-                    <p>
-                        <svg class="contact-icon" viewBox="0 0 24 24">
-                            <path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"/>
-                        </svg>
-                        +7 (495) 123-45-67
-                    </p>
-                    <p>
-                        <svg class="contact-icon" viewBox="0 0 24 24">
-                            <path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"/>
-                        </svg>
-                        info@stom-ulybka.ru
-                    </p>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                <p>© 2023 Стоматология Улыбка. Все права защищены.</p>
-            </div>
-        </div>
-    </footer>
+<section id="contacts" class="wrap">
+ <h2>Свяжитесь с нами</h2>
+ <form id="fos">
+  <input type="text" placeholder="Ваше имя" required>
+  <input type="text" placeholder="Телефон или email" required>
+  <textarea placeholder="Сообщение" required></textarea>
+  <button type="submit">Отправить заявку</button>
+ </form>
+ <p>📞 +7 (999) 555‑33‑22 | ✉️ hello@demo.ru</p>
+</section>
 
-    <!-- MANGO DIALOGS: сюда вставить код чата -->
-    <!-- MANGO DKT: сюда вставить код коллтрекинга -->
+<footer>
+ <div class="wrap bottom">
+  <div>© 2025 NeoSmile Demo — Все права защищены</div>
+  <div>📞 +7 (999) 555‑33‑22 | ✉️ hello@demo.ru</div>
+ </div>
+</footer>
 
-    <script>
-        // Мобильное меню
-        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
-            const nav = document.querySelector('nav ul');
-            if (nav.style.display === 'flex') {
-                nav.style.display = 'none';
-            } else {
-                nav.style.display = 'flex';
-                nav.style.flexDirection = 'column';
-                nav.style.position = 'absolute';
-                nav.style.top = '100%';
-                nav.style.left = '0';
-                nav.style.right = '0';
-                nav.style.backgroundColor = 'var(--light)';
-                nav.style.padding = '20px';
-                nav.style.boxShadow = '0 5px 10px var(--shadow)';
-            }
-        });
-        
-        // Обработка формы
-        document.getElementById('appointment-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Спасибо! Ваша заявка отправлена. Мы свяжемся с вами в ближайшее время.');
-            this.reset();
-        });
-        
-        // Плавная прокрутка для якорных ссылок
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Закрываем мобильное меню после клика
-                    const nav = document.querySelector('nav ul');
-                    if (window.innerWidth <= 768) {
-                        nav.style.display = 'none';
-                    }
-                }
-            });
-        });
-    </script>
+<!-- MANGO DIALOGS: сюда вставить код чата -->
+<!-- MANGO DKT: сюда вставить код коллтрекинга -->
 </body>
 </html>
