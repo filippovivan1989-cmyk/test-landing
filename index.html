@@ -1,105 +1,1697 @@
 <!doctype html>
 <html lang="ru">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NeoSmile — современная стоматология</title>
-<style>
-body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#eef2ff;background:linear-gradient(180deg,#0e0f1a,#1b1c2b);line-height:1.6}
-.wrap{max-width:1100px;margin:auto;padding:20px}
-header,footer{background:rgba(14,15,26,.8);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.1);color:#fff}
-header .top,footer .bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
-.logo{display:flex;align-items:center;gap:10px;font-weight:700}
-.logo svg{width:28px;height:28px}
-.menu a{color:#22d3ee;margin:0 10px;text-decoration:none}
-.menu a:hover{text-decoration:underline}
-.hero{padding:80px 20px;text-align:center}
-.hero h1{font-size:40px;margin:10px 0}
-.hero p{color:#a9b2c7;max-width:600px;margin:auto}
-section{padding:60px 20px}
-.grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
-.card{background:#16182a;padding:20px;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.3)}
-.card h3{color:#22d3ee}
-.review p{font-style:italic}
-form{max-width:500px;margin:auto;display:grid;gap:10px}
-input,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #333;background:#0e0f1a;color:#fff}
-button{background:#22d3ee;color:#000;padding:10px;border:none;border-radius:8px;cursor:pointer}
-button:hover{opacity:.8}
-footer{border-top:1px solid rgba(255,255,255,.1);text-align:center;padding:20px 0;margin-top:40px}
-@media(max-width:600px){.menu{display:none}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>InsightFlow — автоматическая аналитика и визуализация</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f4f6fb;
+      --card: #ffffff;
+      --primary: #4f46e5;
+      --primary-dark: #4338ca;
+      --accent: #0ea5e9;
+      --text: #111827;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --shadow: 0 24px 60px rgba(79, 70, 229, 0.12);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at 10% 10%, rgba(79, 70, 229, 0.08), transparent 55%),
+                  radial-gradient(circle at 90% 20%, rgba(14, 165, 233, 0.15), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(16px);
+      background: rgba(255, 255, 255, 0.8);
+      border-bottom: 1px solid rgba(79, 70, 229, 0.08);
+    }
+
+    .header-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 20px;
+    }
+
+    .brand-logo {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #4f46e5, #0ea5e9);
+      color: white;
+      font-weight: 700;
+    }
+
+    main {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+      display: grid;
+      gap: 32px;
+    }
+
+    .hero {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 4vw, 48px);
+      margin: 0;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .cards-grid {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(79, 70, 229, 0.08);
+    }
+
+    .card h2, .card h3 {
+      margin-top: 0;
+    }
+
+    .upload-area {
+      border: 2px dashed rgba(79, 70, 229, 0.35);
+      border-radius: var(--radius);
+      padding: 32px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+    }
+
+    .upload-area.dragover {
+      border-color: var(--primary);
+      background: rgba(79, 70, 229, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .upload-area input {
+      display: none;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      background: rgba(79, 70, 229, 0.08);
+      color: var(--primary-dark);
+      padding: 6px 14px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .pill.success {
+      background: rgba(34, 197, 94, 0.12);
+      color: #15803d;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      font-size: 14px;
+    }
+
+    th, td {
+      padding: 8px 10px;
+      border: 1px solid var(--border);
+      text-align: left;
+    }
+
+    th {
+      background: rgba(79, 70, 229, 0.08);
+      color: var(--primary-dark);
+      font-weight: 600;
+    }
+
+    .section-title {
+      margin: 0 0 16px;
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title span {
+      display: inline-flex;
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      align-items: center;
+      justify-content: center;
+      background: rgba(79, 70, 229, 0.08);
+      color: var(--primary);
+    }
+
+    .metrics-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .metric-item {
+      display: grid;
+      gap: 4px;
+      padding: 14px;
+      border: 1px solid rgba(79, 70, 229, 0.12);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .metric-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .metric-value {
+      font-weight: 600;
+      font-size: 18px;
+      color: var(--primary-dark);
+    }
+
+    .metric-disabled {
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .visualization-grid {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+
+    .visualization-card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: var(--radius);
+      padding: 18px 18px 10px;
+      border: 1px solid rgba(79, 70, 229, 0.08);
+      box-shadow: var(--shadow);
+    }
+
+    .visualization-card h3 {
+      margin: 0 0 12px;
+      font-size: 18px;
+    }
+
+    .insights-list, .recommendations {
+      display: grid;
+      gap: 16px;
+    }
+
+    .insight-item {
+      border-left: 4px solid var(--primary);
+      padding: 12px 16px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: var(--shadow);
+    }
+
+    .insight-item[data-severity="high"] {
+      border-left-color: #f97316;
+    }
+
+    .insight-item[data-severity="critical"] {
+      border-left-color: #ef4444;
+    }
+
+    .insight-item small {
+      color: var(--muted);
+    }
+
+    .recommendation-card {
+      display: grid;
+      gap: 12px;
+      padding: 18px;
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(79, 70, 229, 0.12);
+      box-shadow: var(--shadow);
+    }
+
+    .tag-group {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      background: rgba(79, 70, 229, 0.12);
+      color: var(--primary-dark);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .tag.impact-high {
+      background: rgba(234, 179, 8, 0.18);
+      color: #a16207;
+    }
+
+    .tag.impact-medium {
+      background: rgba(14, 165, 233, 0.18);
+      color: #0369a1;
+    }
+
+    .tag.impact-low {
+      background: rgba(34, 197, 94, 0.18);
+      color: #15803d;
+    }
+
+    .tag.effort-low {
+      background: rgba(74, 222, 128, 0.2);
+      color: #047857;
+    }
+
+    .tag.effort-medium {
+      background: rgba(96, 165, 250, 0.25);
+      color: #1d4ed8;
+    }
+
+    .tag.effort-high {
+      background: rgba(248, 113, 113, 0.22);
+      color: #b91c1c;
+    }
+
+    .recommendation-card button {
+      justify-self: flex-start;
+      border: none;
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-weight: 600;
+      cursor: pointer;
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      color: white;
+      transition: transform 0.2s ease;
+    }
+
+    .recommendation-card button.secondary {
+      background: rgba(15, 118, 110, 0.14);
+      color: #0f766e;
+    }
+
+    .recommendation-card button:hover {
+      transform: translateY(-1px);
+    }
+
+    .recommendation-card.done {
+      opacity: 0.55;
+      background: rgba(226, 232, 240, 0.8);
+    }
+
+    .matrix-hint {
+      display: grid;
+      gap: 8px;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .matrix-hint span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(79, 70, 229, 0.1);
+      color: var(--primary-dark);
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .status-badge.done {
+      background: rgba(34, 197, 94, 0.15);
+      color: #166534;
+    }
+
+    .status-badge.deferred {
+      background: rgba(248, 113, 113, 0.18);
+      color: #b91c1c;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px 60px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 720px) {
+      .header-inner {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .hero {
+        text-align: center;
+      }
+
+      .metric-header {
+        justify-content: center;
+        text-align: center;
+      }
+    }
+  </style>
 </head>
 <body>
-<header>
- <div class="wrap top">
-  <div class="logo">
-   <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="#22d3ee"/></svg>
-   NeoSmile
-  </div>
-  <nav class="menu">
-   <a href="#hero">Главная</a>
-   <a href="#services">Услуги</a>
-   <a href="#benefits">Преимущества</a>
-   <a href="#reviews">Отзывы</a>
-   <a href="#contacts">Контакты</a>
-  </nav>
-  <div class="contacts">📞 +7 (999) 555-33-22 | ✉️ hello@demo.ru</div>
- </div>
-</header>
+  <header>
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-logo">IF</div>
+        InsightFlow — аналитика в один клик
+      </div>
+      <div class="pill" id="data-status">Загрузите CSV, Excel или JSON</div>
+    </div>
+  </header>
 
-<section id="hero" class="hero">
- <h1>Современная стоматология — комфорт и уверенность в улыбке</h1>
- <p>NeoSmile объединяет технологичный подход и заботу о пациентах. Этот сайт демонстрирует возможности нашей платформы для стоматологических клиник.</p>
- <button onclick="document.getElementById('contacts').scrollIntoView({behavior:'smooth'})">Записаться</button>
-</section>
+  <main>
+    <section class="hero">
+      <div>
+        <h1>Умная визуализация и рекомендации без кода</h1>
+        <p>Загрузите данные о продажах, финансах или маркетинговых метриках — InsightFlow автоматически распознает формат, построит подходящие визуализации и предложит приоритизированные рекомендации для роста показателей.</p>
+      </div>
+      <div class="card">
+        <h3 class="section-title"><span>1</span>Импорт данных</h3>
+        <label class="upload-area" id="upload-area">
+          <input type="file" id="file-input" accept=".csv,.xlsx,.xls,.json,.txt">
+          <strong>Перетащите файл сюда</strong>
+          <p style="margin: 8px 0 0; color: var(--muted);">Поддерживаются CSV, Excel и JSON. Данные хранятся только в рамках сессии.</p>
+          <p style="margin: 12px 0 0; font-size: 13px; color: var(--muted);">Максимальный размер файла — 5&nbsp;МБ.</p>
+        </label>
+      </div>
+    </section>
 
-<section id="services" class="wrap">
- <h2>Наши услуги</h2>
- <div class="grid">
-  <div class="card"><h3>Имплантация</h3><p>Современные методы восстановления зубов под контролем цифровых технологий.</p></div>
-  <div class="card"><h3>Отбеливание</h3><p>Щадящее профессиональное отбеливание с мгновенным результатом.</p></div>
-  <div class="card"><h3>Исправление прикуса</h3><p>Ортодонтия без дискомфорта — прозрачные элайнеры нового поколения.</p></div>
-  <div class="card"><h3>Профилактика</h3><p>Профилактические осмотры и гигиенические процедуры для здоровья зубов.</p></div>
- </div>
-</section>
+    <section class="card" id="preview-card" hidden>
+      <h2 class="section-title"><span>2</span>Предпросмотр и классификация</h2>
+      <div style="display:flex; gap:16px; flex-wrap:wrap; align-items:center;">
+        <div class="pill success" id="detected-type">Тип данных не определён</div>
+        <div class="status-badge" id="quality-indicator">Достаточно данных</div>
+      </div>
+      <div id="preview-table"></div>
+    </section>
 
-<section id="benefits" class="wrap">
- <h2>Почему выбирают нас</h2>
- <div class="grid">
-  <div class="card"><h3>Без боли</h3><p>Современные технологии анестезии и точная диагностика.</p></div>
-  <div class="card"><h3>Опытные специалисты</h3><p>Команда врачей с международной сертификацией.</p></div>
-  <div class="card"><h3>Технологии будущего</h3><p>3D-сканирование, цифровое моделирование и визуализация результата.</p></div>
- </div>
-</section>
+    <section class="cards-grid" id="metrics-and-visuals" hidden>
+      <div class="card">
+        <h2 class="section-title"><span>3</span>Рекомендованные метрики</h2>
+        <p style="color: var(--muted);">Выберите метрики, которые хотите отобразить на графиках. InsightFlow предложит комбинации, основанные на типе данных.</p>
+        <div class="metrics-list" id="metrics-list"></div>
+      </div>
+      <div class="card" style="overflow:hidden;">
+        <h2 class="section-title"><span>4</span>Визуализации</h2>
+        <div class="visualization-grid">
+          <div class="visualization-card">
+            <h3 id="primary-chart-title">Основная визуализация</h3>
+            <div id="visualization-primary" style="width:100%;height:320px;"></div>
+          </div>
+          <div class="visualization-card" id="secondary-chart" hidden>
+            <h3 id="secondary-chart-title">Дополнительный график</h3>
+            <div id="visualization-secondary" style="width:100%;height:320px;"></div>
+          </div>
+          <div class="visualization-card" id="tertiary-chart" hidden>
+            <h3 id="tertiary-chart-title">Дополнительный график</h3>
+            <div id="visualization-tertiary" style="width:100%;height:320px;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<section id="reviews" class="wrap">
- <h2>Отзывы пациентов</h2>
- <div class="grid">
-  <div class="card review"><p>“Прекрасное обслуживание, комфортно и спокойно. Рекомендую всем!”</p><strong>— Анна П.</strong></div>
-  <div class="card review"><p>“Профессионалы своего дела. Сделали всё быстро и качественно.”</p><strong>— Максим К.</strong></div>
-  <div class="card review"><p>“Очень современно и без боли. Чувствуется забота о пациентах.”</p><strong>— Ирина В.</strong></div>
- </div>
-</section>
+    <section class="card" id="insights-card" hidden>
+      <h2 class="section-title"><span>5</span>Ключевые инсайты</h2>
+      <div class="insights-list" id="insights-list"></div>
+    </section>
 
-<section id="contacts" class="wrap">
- <h2>Свяжитесь с нами</h2>
- <form id="fos">
-  <input type="text" placeholder="Ваше имя" required>
-  <input type="text" placeholder="Телефон или email" required>
-  <textarea placeholder="Сообщение" required></textarea>
-  <button type="submit">Отправить заявку</button>
- </form>
- <p>📞 +7 (999) 555-33-22 | ✉️ hello@demo.ru</p>
-</section>
+    <section class="card" id="recommendations-card" hidden>
+      <h2 class="section-title"><span>6</span>Персональные рекомендации</h2>
+      <p style="color: var(--muted); margin-top:0;">Рекомендации ранжированы по влиянию и сложности. Отмечайте статус, чтобы отслеживать прогресс. Матрица приоритетов: высокая ценность + низкие усилия → быстрые победы.</p>
+      <div class="matrix-hint">
+        <span><strong>Влияние:</strong> высокий · средний · низкий</span>
+        <span><strong>Усилие:</strong> низкое · среднее · высокое</span>
+      </div>
+      <div class="recommendations" id="recommendations-list"></div>
+    </section>
+  </main>
 
-<footer>
- <div class="wrap bottom">
-  <div>© 2025 NeoSmile Demo — Все права защищены</div>
-  <div>📞 +7 (999) 555-33-22 | ✉️ hello@demo.ru</div>
- </div>
-</footer>
+  <footer>
+    InsightFlow © 2025 · Данные обрабатываются локально и не покидают ваш браузер.
+  </footer>
 
-<!-- MANGO DIALOGS: сюда вставить код чата -->
-<!-- MANGO DKT: сюда вставить код коллтрекинга -->
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+  <script>
+    const state = {
+      rawData: [],
+      columns: [],
+      detectedType: null,
+      metricsSelection: new Map(),
+      context: {}
+    };
+
+    const KEYWORDS = {
+      sales: ["sales", "sale", "revenue", "доход", "выруч", "продаж", "gmv", "amount", "оборот"],
+      quantity: ["qty", "quantity", "кол-во", "количество", "units"],
+      price: ["price", "стоим", "цена", "average order", "avg check", "ticket"],
+      product: ["product", "товар", "item", "sku", "продукт", "category", "катег"],
+      financial: ["profit", "прибыль", "расход", "затрат", "cost", "budget", "доход", "roi", "cash"],
+      marketing: ["traffic", "sessions", "visits", "clicks", "impressions", "ctr", "bounce", "channel", "utm", "conversion", "конвер", "посещ", "переход"],
+      date: ["date", "дата", "day", "period", "month", "week", "time", "год", "квартал"],
+      channel: ["channel", "канал", "source", "источник", "utm", "platform"],
+      segment: ["segment", "category", "группа", "сегмент"],
+      cost: ["cost", "cpc", "расход", "budget", "spend"],
+      sessions: ["sessions", "visits", "traffic", "посещ", "users"],
+      conversions: ["convers", "orders", "transactions", "покуп", "lead"],
+      bounce: ["bounce", "отказ"],
+      timeOnSite: ["time on site", "avg session", "время", "duration"],
+      roi: ["roi", "romi", "rpoi"],
+      cashflow: ["cashflow", "денеж", "cash flow", "поток"],
+      expense: ["expense", "расход"],
+      income: ["income", "доход", "revenue"],
+      margin: ["margin", "маржин"]
+    };
+
+    const metricsConfig = {
+      sales: [
+        { id: "total_sales", label: "Общий объём продаж", compute: ctx => summarize(ctx, "salesAmount", sumFormatter) },
+        { id: "average_check", label: "Средний чек", compute: ctx => averageMetric(ctx, "salesAmount", "quantity", averageFormatter) },
+        { id: "top_products", label: "Топ-товары", compute: ctx => topSegments(ctx, "product", "salesAmount") },
+        { id: "sales_trend", label: "Динамика продаж по периодам", compute: ctx => trendMetric(ctx, "date", "salesAmount") },
+        { id: "purchase_conversion", label: "Конверсия в покупку", compute: ctx => conversionMetric(ctx) }
+      ],
+      marketing: [
+        { id: "traffic_channels", label: "Трафик по каналам", compute: ctx => segmentSummary(ctx, "channel", "sessions") },
+        { id: "bounce_rate", label: "Показатель отказов", compute: ctx => summarize(ctx, "bounce", percentageFormatter) },
+        { id: "funnel_conversion", label: "Конверсия по воронке", compute: ctx => summarize(ctx, "conversions", percentageFormatter) },
+        { id: "cac", label: "Стоимость привлечения (CAC)", compute: ctx => cacMetric(ctx) },
+        { id: "channel_roi", label: "ROI по каналам", compute: ctx => segmentSummary(ctx, "channel", "roi") }
+      ],
+      financial: [
+        { id: "income_trend", label: "Динамика доходов", compute: ctx => trendMetric(ctx, "date", "income") },
+        { id: "expense_trend", label: "Динамика расходов", compute: ctx => trendMetric(ctx, "date", "expense") },
+        { id: "margin", label: "Маржинальность", compute: ctx => marginMetric(ctx) },
+        { id: "forecast", label: "Прогноз тренда", compute: ctx => forecastMetric(ctx) },
+        { id: "cashflow", label: "Денежный поток", compute: ctx => trendMetric(ctx, "date", "cashflow") }
+      ],
+      generic: [
+        { id: "main_metric", label: "Основной показатель", compute: ctx => summarize(ctx, ctx.primaryMetric || "salesAmount", sumFormatter) }
+      ]
+    };
+
+    const recommendationsConfig = {
+      sales: ctx => buildSalesRecommendations(ctx),
+      marketing: ctx => buildMarketingRecommendations(ctx),
+      financial: ctx => buildFinancialRecommendations(ctx),
+      generic: ctx => buildGenericRecommendations(ctx)
+    };
+
+    const uploadArea = document.getElementById("upload-area");
+    const fileInput = document.getElementById("file-input");
+
+    uploadArea.addEventListener("click", () => fileInput.click());
+    uploadArea.addEventListener("dragover", event => {
+      event.preventDefault();
+      uploadArea.classList.add("dragover");
+    });
+
+    uploadArea.addEventListener("dragleave", () => uploadArea.classList.remove("dragover"));
+    uploadArea.addEventListener("drop", event => {
+      event.preventDefault();
+      uploadArea.classList.remove("dragover");
+      const file = event.dataTransfer.files[0];
+      if (file) handleFile(file);
+    });
+
+    fileInput.addEventListener("change", event => {
+      const file = event.target.files[0];
+      if (file) handleFile(file);
+    });
+
+    function handleFile(file) {
+      if (file.size > 5 * 1024 * 1024) {
+        updateStatus("Файл слишком большой. Максимум 5 МБ", false);
+        return;
+      }
+      updateStatus(`Загружаем ${file.name}...`, true);
+      const extension = file.name.split(".").pop().toLowerCase();
+      if (["csv", "txt"].includes(extension)) {
+        Papa.parse(file, {
+          header: true,
+          skipEmptyLines: true,
+          complete: result => processData(result.data)
+        });
+      } else if (["xlsx", "xls"].includes(extension)) {
+        const reader = new FileReader();
+        reader.onload = e => {
+          const data = new Uint8Array(e.target.result);
+          const workbook = XLSX.read(data, { type: "array" });
+          const firstSheet = workbook.SheetNames[0];
+          const worksheet = workbook.Sheets[firstSheet];
+          const json = XLSX.utils.sheet_to_json(worksheet, { raw: false, defval: null });
+          processData(json);
+        };
+        reader.readAsArrayBuffer(file);
+      } else if (extension === "json") {
+        const reader = new FileReader();
+        reader.onload = e => {
+          try {
+            const json = JSON.parse(e.target.result);
+            if (Array.isArray(json)) {
+              processData(json);
+            } else if (Array.isArray(json.data)) {
+              processData(json.data);
+            } else {
+              updateStatus("Не удалось разобрать JSON. Ожидается массив объектов.", false);
+            }
+          } catch (error) {
+            console.error(error);
+            updateStatus("Ошибка чтения JSON", false);
+          }
+        };
+        reader.readAsText(file, "utf-8");
+      } else {
+        updateStatus("Поддерживаются только CSV, Excel или JSON", false);
+      }
+    }
+
+    function processData(rows) {
+      if (!Array.isArray(rows) || !rows.length) {
+        updateStatus("Файл не содержит данных", false);
+        return;
+      }
+
+      const normalized = rows.map(row => {
+        const result = {};
+        Object.entries(row).forEach(([key, value]) => {
+          if (!key) return;
+          const normalizedKey = key.toString().trim();
+          result[normalizedKey] = typeof value === "string" ? value.trim() : value;
+        });
+        return result;
+      }).filter(row => Object.values(row).some(v => v !== null && v !== "" && v !== undefined));
+
+      if (!normalized.length) {
+        updateStatus("Недостаточно ненулевых строк", false);
+        return;
+      }
+
+      state.rawData = normalized;
+      state.columns = Object.keys(normalized[0]);
+      state.context = buildContext(normalized, state.columns);
+      renderPreview(normalized);
+      const detected = detectDataType(state.columns, normalized);
+      state.detectedType = detected.type;
+      document.getElementById("detected-type").textContent = detected.label;
+      document.getElementById("quality-indicator").textContent = detected.confidenceLabel;
+      document.getElementById("quality-indicator").className = `status-badge ${detected.confidenceClass}`;
+      state.context.detectedType = state.detectedType;
+      updateStatus(`Обработано строк: ${normalized.length}`, true);
+      renderMetrics();
+      renderVisualizations();
+      renderInsights();
+      renderRecommendations();
+      document.getElementById("preview-card").hidden = false;
+      document.getElementById("metrics-and-visuals").hidden = false;
+      document.getElementById("insights-card").hidden = false;
+      document.getElementById("recommendations-card").hidden = false;
+    }
+
+    function updateStatus(message, positive) {
+      const badge = document.getElementById("data-status");
+      badge.textContent = message;
+      badge.classList.toggle("success", Boolean(positive));
+    }
+
+    function buildContext(rows, columns) {
+      const lowerColumns = columns.map(c => c.toLowerCase());
+      const findByKeywords = keywords => {
+        const idx = lowerColumns.findIndex(col => keywords.some(keyword => col.includes(keyword)));
+        return idx >= 0 ? columns[idx] : null;
+      };
+
+      const context = {
+        rows,
+        columns,
+        numericColumns: detectNumericColumns(rows, columns),
+        dateColumn: findDateColumn(rows, columns),
+        productColumn: findByKeywords(KEYWORDS.product),
+        channelColumn: findByKeywords(KEYWORDS.channel),
+        segmentColumn: findByKeywords(KEYWORDS.segment),
+        salesAmountColumn: findByKeywords([...KEYWORDS.sales, ...KEYWORDS.income]),
+        quantityColumn: findByKeywords(KEYWORDS.quantity),
+        priceColumn: findByKeywords(KEYWORDS.price),
+        sessionsColumn: findByKeywords(KEYWORDS.sessions),
+        conversionColumn: findByKeywords(KEYWORDS.conversions),
+        costColumn: findByKeywords(KEYWORDS.cost),
+        bounceColumn: findByKeywords(KEYWORDS.bounce),
+        timeOnSiteColumn: findByKeywords(KEYWORDS.timeOnSite),
+        roiColumn: findByKeywords(KEYWORDS.roi),
+        expenseColumn: findByKeywords(KEYWORDS.expense),
+        incomeColumn: findByKeywords(KEYWORDS.income),
+        marginColumn: findByKeywords(KEYWORDS.margin),
+        cashflowColumn: findByKeywords(KEYWORDS.cashflow)
+      };
+      context.primaryMetric = context.salesAmountColumn || context.incomeColumn || context.numericColumns[0] || null;
+      return context;
+    }
+
+    function detectNumericColumns(rows, columns) {
+      return columns.filter(col => {
+        const sample = rows.slice(0, 20).map(row => parseNumber(row[col])).filter(v => !isNaN(v));
+        return sample.length >= Math.min(3, rows.length) && sample.every(v => typeof v === "number");
+      });
+    }
+
+    function findDateColumn(rows, columns) {
+      const lowerColumns = columns.map(c => c.toLowerCase());
+      for (const keyword of KEYWORDS.date) {
+        const idx = lowerColumns.findIndex(col => col.includes(keyword));
+        if (idx >= 0) {
+          const column = columns[idx];
+          const validCount = rows.slice(0, 20).reduce((acc, row) => acc + (parseDate(row[column]) ? 1 : 0), 0);
+          if (validCount >= Math.max(3, Math.floor(rows.length * 0.2))) {
+            return column;
+          }
+        }
+      }
+      return null;
+    }
+
+    function detectDataType(columns, rows) {
+      const lowerColumns = columns.map(c => c.toLowerCase());
+      const containsAny = keywords => keywords.some(keyword => lowerColumns.some(col => col.includes(keyword)));
+      const score = { sales: 0, marketing: 0, financial: 0 };
+
+      if (containsAny(KEYWORDS.sales) || containsAny(KEYWORDS.product) || containsAny(KEYWORDS.quantity)) {
+        score.sales += 2;
+      }
+      if (containsAny(KEYWORDS.marketing) || containsAny(KEYWORDS.channel)) {
+        score.marketing += 2;
+      }
+      if (containsAny(KEYWORDS.financial) || containsAny(KEYWORDS.expense) || containsAny(KEYWORDS.margin)) {
+        score.financial += 2;
+      }
+
+      const numericColumns = detectNumericColumns(rows, columns);
+      if (numericColumns.length >= 2 && containsAny(KEYWORDS.date)) {
+        score.sales += 1;
+        score.financial += 1;
+        score.marketing += 1;
+      }
+
+      const sorted = Object.entries(score).sort((a, b) => b[1] - a[1]);
+      const [topType, topScore] = sorted[0];
+      const secondScore = sorted[1][1];
+      const confidence = topScore - secondScore;
+      const confidenceClass = confidence >= 2 ? "done" : confidence >= 1 ? "" : "deferred";
+      const confidenceLabel = confidence >= 2 ? "Высокая уверенность" : confidence >= 1 ? "Средняя уверенность" : "Низкая уверенность";
+      const type = topScore === 0 ? "generic" : topType;
+      const labelMap = {
+        sales: "Обнаружены данные по продажам",
+        marketing: "Обнаружены маркетинговые метрики",
+        financial: "Обнаружены финансовые показатели",
+        generic: "Тип данных не определён"
+      };
+      return { type, label: labelMap[type], confidenceLabel, confidenceClass };
+    }
+    function renderPreview(rows) {
+      const previewContainer = document.getElementById("preview-table");
+      const previewRows = rows.slice(0, 8);
+      const columns = state.columns;
+      const header = columns.map(col => `<th>${col}</th>`).join("");
+      const body = previewRows.map(row => {
+        const cells = columns.map(col => `<td>${formatCell(row[col])}</td>`).join("");
+        return `<tr>${cells}</tr>`;
+      }).join("");
+      previewContainer.innerHTML = `<div style="overflow:auto; max-height:300px;"><table><thead><tr>${header}</tr></thead><tbody>${body}</tbody></table></div>`;
+    }
+
+    function formatCell(value) {
+      if (value === null || value === undefined || value === "") return "—";
+      if (typeof value === "number") return value.toLocaleString("ru-RU");
+      const str = value.toString();
+      return str.length > 40 ? `${str.slice(0, 40)}…` : str;
+    }
+
+    function renderMetrics() {
+      const metricsContainer = document.getElementById("metrics-list");
+      metricsContainer.innerHTML = "";
+      const type = state.detectedType || "generic";
+      const metrics = metricsConfig[type] || metricsConfig.generic;
+      metrics.forEach(metric => {
+        const result = metric.compute(state.context);
+        const isAvailable = result && !result.unavailable;
+        const checkboxId = `metric-${metric.id}`;
+        if (!state.metricsSelection.has(metric.id)) {
+          state.metricsSelection.set(metric.id, Boolean(isAvailable));
+        }
+        const checked = state.metricsSelection.get(metric.id) && isAvailable;
+        const metricValue = result?.value ?? result?.description ?? "—";
+        const details = result?.details ? `<small style=\"color: var(--muted);\">${result.details}</small>` : "";
+        metricsContainer.insertAdjacentHTML("beforeend", `
+          <label class="metric-item">
+            <div class="metric-header">
+              <div>
+                <div style="font-weight:600;">${metric.label}</div>
+                ${details}
+              </div>
+              <div class="metric-value ${isAvailable ? "" : "metric-disabled"}">${metricValue}</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <input type="checkbox" id="${checkboxId}" ${checked ? "checked" : ""} ${isAvailable ? "" : "disabled"} data-metric="${metric.id}">
+              <span style="color: var(--muted); font-size:13px;">${isAvailable ? "Показать на графике" : "Недостаточно данных"}</span>
+            </div>
+          </label>
+        `);
+      });
+      metricsContainer.querySelectorAll('input[type="checkbox"]').forEach(input => {
+        input.addEventListener("change", event => {
+          const metricId = event.target.dataset.metric;
+          state.metricsSelection.set(metricId, event.target.checked);
+          renderVisualizations();
+          renderInsights();
+          renderRecommendations();
+        });
+      });
+    }
+
+    function renderVisualizations() {
+      const type = state.detectedType || "generic";
+      const selectedMetricIds = Array.from(state.metricsSelection.entries())
+        .filter(([, isSelected]) => isSelected)
+        .map(([metricId]) => metricId);
+      const context = state.context;
+      const chartData = buildChartData(type, selectedMetricIds, context);
+      Plotly.newPlot("visualization-primary", chartData.primary.data, chartData.primary.layout, { displaylogo: false, responsive: true });
+      document.getElementById("primary-chart-title").textContent = chartData.primary.title;
+
+      if (chartData.secondary) {
+        document.getElementById("secondary-chart").hidden = false;
+        document.getElementById("secondary-chart-title").textContent = chartData.secondary.title;
+        Plotly.newPlot("visualization-secondary", chartData.secondary.data, chartData.secondary.layout, { displaylogo: false, responsive: true });
+      } else {
+        document.getElementById("secondary-chart").hidden = true;
+      }
+
+      if (chartData.tertiary) {
+        document.getElementById("tertiary-chart").hidden = false;
+        document.getElementById("tertiary-chart-title").textContent = chartData.tertiary.title;
+        Plotly.newPlot("visualization-tertiary", chartData.tertiary.data, chartData.tertiary.layout, { displaylogo: false, responsive: true });
+      } else {
+        document.getElementById("tertiary-chart").hidden = true;
+      }
+    }
+
+    function buildChartData(type, selectedMetricIds, ctx) {
+      const fallbackMetric = ctx.primaryMetric;
+      if (!selectedMetricIds.length) {
+        selectedMetricIds = [metricsConfig[type]?.[0]?.id || metricsConfig.generic[0].id];
+      }
+      const numericColumn = ctx.salesAmountColumn || ctx.incomeColumn || ctx.numericColumns[0];
+      const dateColumn = ctx.dateColumn;
+      switch (type) {
+        case "sales":
+          return buildSalesCharts(selectedMetricIds, ctx, numericColumn, dateColumn, fallbackMetric);
+        case "marketing":
+          return buildMarketingCharts(selectedMetricIds, ctx);
+        case "financial":
+          return buildFinancialCharts(selectedMetricIds, ctx);
+        default:
+          return buildGenericCharts(selectedMetricIds, ctx, numericColumn, dateColumn, fallbackMetric);
+      }
+    }
+    function buildSalesCharts(selectedMetricIds, ctx, valueColumn, dateColumn, fallbackMetric) {
+      const productColumn = ctx.productColumn || ctx.segmentColumn;
+      const metricColumn = valueColumn || fallbackMetric;
+      const values = aggregateBySegment(ctx.rows, productColumn, metricColumn, 8);
+      const pieData = values.length ? [{
+        labels: values.map(v => v.segment),
+        values: values.map(v => v.value),
+        type: "pie",
+        textinfo: "label+percent",
+        hole: 0.35,
+        marker: { colors: values.map((_, i) => generateColor(i)) }
+      }] : [{
+        x: ctx.rows.map((_, i) => i + 1),
+        y: ctx.rows.map(row => parseNumber(row[metricColumn] ?? 0)),
+        type: "bar",
+        marker: { color: ctx.rows.map((_, i) => generateColor(i)) }
+      }];
+
+      const layout = {
+        margin: { t: 20, b: 20, l: 20, r: 20 },
+        legend: { orientation: "h" }
+      };
+
+      let secondary = null;
+      if (dateColumn) {
+        const timeline = aggregateByDate(ctx.rows, dateColumn, metricColumn);
+        if (timeline.length) {
+          secondary = {
+            title: "Динамика продаж",
+            data: [{
+              x: timeline.map(item => item.date),
+              y: timeline.map(item => item.value),
+              type: "scatter",
+              mode: "lines+markers",
+              line: { color: "#4f46e5", width: 3 }
+            }],
+            layout: { margin: { t: 20, b: 40, l: 40, r: 20 } }
+          };
+        }
+      }
+
+      let tertiary = null;
+      if (ctx.quantityColumn && ctx.salesAmountColumn && dateColumn) {
+        const avgCheckData = aggregateByDate(ctx.rows, dateColumn, ctx.salesAmountColumn, ctx.quantityColumn);
+        if (avgCheckData.length) {
+          tertiary = {
+            title: "Средний чек",
+            data: [{
+              x: avgCheckData.map(item => item.date),
+              y: avgCheckData.map(item => item.avg),
+              type: "bar",
+              marker: { color: "#0ea5e9" }
+            }],
+            layout: { margin: { t: 20, b: 40, l: 40, r: 20 } }
+          };
+        }
+      }
+
+      return {
+        primary: { title: "Структура продаж", data: pieData, layout },
+        secondary,
+        tertiary
+      };
+    }
+
+    function buildMarketingCharts(selectedMetricIds, ctx) {
+      const channelColumn = ctx.channelColumn || ctx.segmentColumn;
+      const sessionsColumn = ctx.sessionsColumn || ctx.numericColumns[0];
+      const conversionColumn = ctx.conversionColumn;
+      const costColumn = ctx.costColumn;
+      const roiColumn = ctx.roiColumn;
+
+      const channels = aggregateBySegment(ctx.rows, channelColumn, sessionsColumn, 8);
+      const primary = {
+        title: "Трафик по каналам",
+        data: [{
+          x: channels.map(item => item.segment),
+          y: channels.map(item => item.value),
+          type: "bar",
+          marker: { color: channels.map((_, i) => generateColor(i)) }
+        }],
+        layout: { margin: { t: 20, b: 80, l: 40, r: 20 }, xaxis: { automargin: true } }
+      };
+
+      let secondary = null;
+      if (conversionColumn) {
+        const convData = aggregateBySegment(ctx.rows, channelColumn, conversionColumn, 8);
+        if (convData.length) {
+          secondary = {
+            title: "Конверсия по каналам",
+            data: [{
+              x: convData.map(item => item.segment),
+              y: convData.map(item => item.value),
+              type: "scatter",
+              mode: "markers",
+              marker: { size: 14, color: convData.map((_, i) => generateColor(i)) }
+            }],
+            layout: { margin: { t: 20, b: 80, l: 40, r: 20 }, yaxis: { tickformat: ".0%" } }
+          };
+        }
+      }
+
+      let tertiary = null;
+      if (costColumn && sessionsColumn) {
+        const cacData = aggregateBySegment(ctx.rows, channelColumn, costColumn, 8, sessionsColumn);
+        tertiary = {
+          title: "CAC по каналам",
+          data: [{
+            x: cacData.map(item => item.segment),
+            y: cacData.map(item => item.cac || 0),
+            type: "bar",
+            marker: { color: "#7c3aed" }
+          }],
+          layout: { margin: { t: 20, b: 80, l: 40, r: 20 } }
+        };
+      } else if (roiColumn) {
+        const roiData = aggregateBySegment(ctx.rows, channelColumn, roiColumn, 8);
+        tertiary = {
+          title: "ROI по каналам",
+          data: [{
+            x: roiData.map(item => item.segment),
+            y: roiData.map(item => item.value),
+            type: "bar",
+            marker: { color: "#0ea5e9" }
+          }],
+          layout: { margin: { t: 20, b: 80, l: 40, r: 20 }, yaxis: { tickformat: ".0%" } }
+        };
+      }
+
+      return { primary, secondary, tertiary };
+    }
+
+    function buildFinancialCharts(selectedMetricIds, ctx) {
+      const dateColumn = ctx.dateColumn;
+      const incomeColumn = ctx.incomeColumn || ctx.numericColumns[0];
+      const expenseColumn = ctx.expenseColumn;
+      const marginColumn = ctx.marginColumn;
+
+      const timelineIncome = aggregateByDate(ctx.rows, dateColumn, incomeColumn);
+      const timelineExpense = expenseColumn ? aggregateByDate(ctx.rows, dateColumn, expenseColumn) : [];
+
+      const primaryData = [];
+      if (timelineIncome.length) {
+        primaryData.push({
+          x: timelineIncome.map(item => item.date),
+          y: timelineIncome.map(item => item.value),
+          type: "scatter",
+          mode: "lines+markers",
+          name: "Доход",
+          line: { color: "#4f46e5", width: 3 }
+        });
+      }
+      if (timelineExpense.length) {
+        primaryData.push({
+          x: timelineExpense.map(item => item.date),
+          y: timelineExpense.map(item => item.value),
+          type: "scatter",
+          mode: "lines+markers",
+          name: "Расход",
+          line: { color: "#ef4444", width: 3 }
+        });
+      }
+
+      const primary = {
+        title: "Финансовый тренд",
+        data: primaryData,
+        layout: { margin: { t: 20, b: 40, l: 50, r: 20 }, hovermode: "x unified" }
+      };
+
+      let secondary = null;
+      if (marginColumn || (timelineIncome.length && timelineExpense.length)) {
+        const marginData = aggregateMargin(timelineIncome, timelineExpense, ctx.rows, marginColumn, dateColumn);
+        if (marginData.length) {
+          secondary = {
+            title: "Маржинальность",
+            data: [{
+              x: marginData.map(item => item.date),
+              y: marginData.map(item => item.margin),
+              type: "bar",
+              marker: { color: marginData.map(item => item.margin >= 0 ? "#22c55e" : "#ef4444") }
+            }],
+            layout: { margin: { t: 20, b: 40, l: 50, r: 20 }, yaxis: { tickformat: ".0%" } }
+          };
+        }
+      }
+
+      let tertiary = null;
+      if (ctx.cashflowColumn) {
+        const cashData = aggregateByDate(ctx.rows, dateColumn, ctx.cashflowColumn);
+        tertiary = {
+          title: "Денежный поток",
+          data: [{
+            type: "bar",
+            x: cashData.map(item => item.date),
+            y: cashData.map(item => item.value),
+            marker: { color: cashData.map(item => item.value >= 0 ? "#0ea5e9" : "#ef4444") }
+          }],
+          layout: { margin: { t: 20, b: 40, l: 50, r: 20 } }
+        };
+      }
+
+      return { primary, secondary, tertiary };
+    }
+
+    function buildGenericCharts(selectedMetricIds, ctx, numericColumn, dateColumn, fallbackMetric) {
+      const column = numericColumn || fallbackMetric;
+      const values = ctx.rows.map(row => parseNumber(row[column] ?? 0));
+      const primary = {
+        title: `Распределение: ${column || "значения"}`,
+        data: [{
+          type: "histogram",
+          x: values,
+          marker: { color: "#4f46e5" },
+          nbinsx: 20
+        }],
+        layout: { margin: { t: 20, b: 40, l: 40, r: 20 } }
+      };
+
+      let secondary = null;
+      if (dateColumn) {
+        const timeline = aggregateByDate(ctx.rows, dateColumn, column);
+        secondary = {
+          title: "Динамика показателя",
+          data: [{
+            x: timeline.map(item => item.date),
+            y: timeline.map(item => item.value),
+            type: "scatter",
+            mode: "lines+markers",
+            line: { color: "#0ea5e9", width: 3 }
+          }],
+          layout: { margin: { t: 20, b: 40, l: 40, r: 20 } }
+        };
+      }
+
+      return { primary, secondary };
+    }
+    function aggregateBySegment(rows, segmentColumn, valueColumn, limit = 8, dividerColumn) {
+      if (!segmentColumn || !valueColumn) return [];
+      const aggregation = new Map();
+      rows.forEach(row => {
+        const segment = row[segmentColumn] ?? "Без сегмента";
+        const value = parseNumber(row[valueColumn]);
+        if (isNaN(value)) return;
+        const divider = dividerColumn ? parseNumber(row[dividerColumn]) : null;
+        if (!aggregation.has(segment)) {
+          aggregation.set(segment, { sum: 0, count: 0, dividerSum: 0 });
+        }
+        const entry = aggregation.get(segment);
+        entry.sum += value;
+        entry.count += 1;
+        if (divider !== null && !isNaN(divider)) {
+          entry.dividerSum += divider;
+        }
+      });
+      const result = Array.from(aggregation.entries()).map(([segment, data]) => ({
+        segment,
+        value: data.sum,
+        count: data.count,
+        cac: data.dividerSum ? data.sum / data.dividerSum : null
+      })).sort((a, b) => b.value - a.value);
+      return result.slice(0, limit);
+    }
+
+    function aggregateByDate(rows, dateColumn, valueColumn, secondValueColumn) {
+      if (!dateColumn || !valueColumn) return [];
+      const aggregation = new Map();
+      rows.forEach(row => {
+        const dateValue = parseDate(row[dateColumn]);
+        if (!dateValue) return;
+        const key = dateValue.toISOString().slice(0, 10);
+        const value = parseNumber(row[valueColumn]);
+        if (isNaN(value)) return;
+        if (!aggregation.has(key)) {
+          aggregation.set(key, { sum: 0, count: 0, secondSum: 0 });
+        }
+        const entry = aggregation.get(key);
+        entry.sum += value;
+        entry.count += 1;
+        if (secondValueColumn) {
+          const secondValue = parseNumber(row[secondValueColumn]);
+          if (!isNaN(secondValue)) {
+            entry.secondSum += secondValue;
+          }
+        }
+      });
+      return Array.from(aggregation.entries()).map(([date, data]) => ({
+        date,
+        value: data.sum,
+        avg: data.secondSum ? data.sum / data.secondSum : data.sum / Math.max(data.count, 1)
+      })).sort((a, b) => new Date(a.date) - new Date(b.date));
+    }
+
+    function aggregateMargin(incomeTimeline, expenseTimeline, rows, marginColumn, dateColumn) {
+      if (marginColumn) {
+        return aggregateByDate(rows, dateColumn, marginColumn).map(item => ({
+          date: item.date,
+          margin: item.value
+        }));
+      }
+      const expenseMap = new Map(expenseTimeline.map(item => [item.date, item.value]));
+      return incomeTimeline.map(item => {
+        const expense = expenseMap.get(item.date) ?? 0;
+        const margin = item.value === 0 ? 0 : (item.value - expense) / Math.max(item.value, 1);
+        return { date: item.date, margin };
+      });
+    }
+
+    function renderInsights() {
+      const list = document.getElementById("insights-list");
+      const insights = buildInsights(state.detectedType, state.context, state.metricsSelection);
+      list.innerHTML = insights.map(insight => `
+        <div class="insight-item" data-severity="${insight.severity}">
+          <strong>${insight.title}</strong>
+          <div>${insight.description}</div>
+          <small>${insight.metric}</small>
+        </div>
+      `).join("");
+    }
+
+    function buildInsights(type, ctx, selection) {
+      const selectedMetrics = Array.from(selection.entries()).filter(([, flag]) => flag).map(([id]) => id);
+      const primaryColumn = ctx.salesAmountColumn || ctx.incomeColumn || ctx.numericColumns[0];
+      if (!primaryColumn) {
+        return [{
+          title: "Требуется больше данных",
+          description: "Не удалось определить числовые столбцы для анализа. Добавьте показатели выручки, посещаемости или затрат.",
+          severity: "critical",
+          metric: "Проверка структуры"
+        }];
+      }
+
+      const timeline = ctx.dateColumn ? aggregateByDate(ctx.rows, ctx.dateColumn, primaryColumn) : [];
+      const values = ctx.rows.map(row => parseNumber(row[primaryColumn])).filter(v => !isNaN(v));
+      const mean = values.reduce((a, b) => a + b, 0) / Math.max(values.length, 1);
+      const std = Math.sqrt(values.reduce((acc, val) => acc + Math.pow(val - mean, 2), 0) / Math.max(values.length, 1));
+      const anomalies = ctx.rows
+        .map((row, index) => ({ value: parseNumber(row[primaryColumn]), index }))
+        .filter(item => !isNaN(item.value) && Math.abs(item.value - mean) > std * 2);
+
+      const insights = [];
+      if (timeline.length >= 2) {
+        const first = timeline[0].value;
+        const last = timeline[timeline.length - 1].value;
+        const trend = ((last - first) / Math.max(first, 1)) * 100;
+        const trendLabel = trend > 0 ? `Рост на ${trend.toFixed(1)}%` : `Падение на ${Math.abs(trend).toFixed(1)}%`;
+        insights.push({
+          title: trend > 0 ? "Положительная динамика" : "Отрицательная динамика",
+          description: `Сравнение первого и последнего периода показывает: ${trendLabel}.`,
+          severity: trend > 0 ? "low" : "high",
+          metric: ctx.dateColumn || "Динамика"
+        });
+      }
+
+      if (anomalies.length) {
+        insights.push({
+          title: "Выбросы в данных",
+          description: `Найдено ${anomalies.length} знач. отличий от среднего. Проверьте качество данных и события в эти периоды.`,
+          severity: "high",
+          metric: primaryColumn
+        });
+      }
+
+      const segmentColumn = ctx.productColumn || ctx.channelColumn || ctx.segmentColumn;
+      const segments = aggregateBySegment(ctx.rows, segmentColumn, primaryColumn, 3);
+      if (segments.length) {
+        insights.push({
+          title: "Топ-сегменты",
+          description: `Лидеры: ${segments.map(item => `${item.segment} (${formatNumber(item.value)})`).join(", ")}.`,
+          severity: "low",
+          metric: segmentColumn || "Категории"
+        });
+      }
+
+      if (!insights.length) {
+        insights.push({
+          title: "Недостаточно данных для инсайтов",
+          description: "Добавьте даты или категориальные столбцы, чтобы получить тренды и сравнения.",
+          severity: "medium",
+          metric: "Структура данных"
+        });
+      }
+      return insights;
+    }
+    function renderRecommendations() {
+      const container = document.getElementById("recommendations-list");
+      const type = state.detectedType || "generic";
+      const recommendations = (recommendationsConfig[type] || recommendationsConfig.generic)(state.context) || [];
+      container.innerHTML = "";
+      recommendations.forEach(rec => {
+        const id = rec.id;
+        if (!state.metricsSelection.has(`rec-${id}`)) {
+          state.metricsSelection.set(`rec-${id}`, rec.status || "pending");
+        }
+        const status = state.metricsSelection.get(`rec-${id}`);
+        const statusLabel = status === "done" ? "Выполнено" : status === "deferred" ? "Отложено" : "В работе";
+        const card = document.createElement("div");
+        card.className = `recommendation-card ${status === "done" ? "done" : ""}`;
+        card.innerHTML = `
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
+            <div>
+              <h3 style="margin:0 0 6px;">${rec.title}</h3>
+              <div style="color:var(--muted);">${rec.description}</div>
+            </div>
+            <div class="status-badge ${status}">${statusLabel}</div>
+          </div>
+          <div class="tag-group">
+            <span class="tag impact-${rec.impact}">Влияние: ${rec.impactLabel}</span>
+            <span class="tag effort-${rec.effort}">Усилие: ${rec.effortLabel}</span>
+            ${rec.metric ? `<span class="tag">${rec.metric}</span>` : ""}
+          </div>
+          <div style="display:flex; gap:12px; flex-wrap:wrap;">
+            <button data-action="done" data-rec="${id}">Отметить как выполнено</button>
+            <button class="secondary" data-action="deferred" data-rec="${id}">Отложить</button>
+          </div>
+        `;
+        card.querySelectorAll("button").forEach(btn => btn.addEventListener("click", event => {
+          const action = event.currentTarget.dataset.action;
+          const recId = event.currentTarget.dataset.rec;
+          state.metricsSelection.set(`rec-${recId}`, action === "done" ? "done" : "deferred");
+          renderRecommendations();
+        }));
+        container.appendChild(card);
+      });
+    }
+
+    function buildSalesRecommendations(ctx) {
+      const segments = aggregateBySegment(ctx.rows, ctx.productColumn || ctx.segmentColumn, ctx.salesAmountColumn || ctx.primaryMetric, 5);
+      const falling = detectDecline(ctx);
+      const topLoss = falling?.map(item => item.segment).slice(0, 2).join(", ");
+      return [
+        {
+          id: "sales-promo",
+          title: "Поддержите категории с падающими продажами",
+          description: topLoss ? `Категории ${topLoss} теряют оборот. Запустите промо-предложения или обновите витрину.` : "Определите товары с отрицательной динамикой и запустите кампании по их поддержке.",
+          impact: "high",
+          effort: "medium",
+          impactLabel: "высокое",
+          effortLabel: "среднее",
+          metric: "Динамика продаж"
+        },
+        {
+          id: "sales-pricing",
+          title: "Проверьте стратегию ценообразования",
+          description: "Сравните средний чек и эластичность спроса по ключевым SKU. Оптимизируйте цены для роста маржинальности.",
+          impact: "medium",
+          effort: "medium",
+          impactLabel: "среднее",
+          effortLabel: "среднее",
+          metric: "Средний чек"
+        },
+        {
+          id: "sales-cross",
+          title: "Настройте кросс-продажи",
+          description: "Используйте поведенческие данные покупателей, чтобы рекомендовать дополняющие товары в корзине и письмах.",
+          impact: "high",
+          effort: "low",
+          impactLabel: "высокое",
+          effortLabel: "низкое",
+          metric: "Поведение покупателей"
+        },
+        {
+          id: "sales-assortment",
+          title: "Оптимизируйте ассортимент",
+          description: segments.length ? `Сконцентрируйте запасы на ТОП-${segments.length} категориях (${segments.map(s => s.segment).join(", ")}). Выведите слабые позиции.` : "Анализируйте ABC/XYZ, чтобы удерживать товары с максимальным вкладом и отказаться от низкомаржинальных SKU.",
+          impact: "medium",
+          effort: "medium",
+          impactLabel: "среднее",
+          effortLabel: "среднее",
+          metric: "Структура продаж"
+        },
+        {
+          id: "sales-season",
+          title: "Подготовьтесь к сезонным всплескам",
+          description: "Используйте прогноз по историческим данным, чтобы заранее планировать акции и закупки.",
+          impact: "medium",
+          effort: "high",
+          impactLabel: "среднее",
+          effortLabel: "высокое",
+          metric: "Сезонность"
+        }
+      ];
+    }
+
+    function buildMarketingRecommendations(ctx) {
+      const channels = aggregateBySegment(ctx.rows, ctx.channelColumn || ctx.segmentColumn, ctx.sessionsColumn || ctx.primaryMetric, 5);
+      const worstChannel = channels[channels.length - 1];
+      return [
+        {
+          id: "mkt-budget",
+          title: "Перераспределите бюджет между каналами",
+          description: "Оцените ROI и CAC по каналам. Увеличьте инвестиции в наиболее рентабельные источники, сократите слабые.",
+          impact: "high",
+          effort: "medium",
+          impactLabel: "высокое",
+          effortLabel: "среднее",
+          metric: "ROI по каналам"
+        },
+        {
+          id: "mkt-funnel",
+          title: "Усилите конверсию на этапах воронки",
+          description: "Проанализируйте точки просадки: улучшите офферы, UX и скорости загрузки. Запустите A/B тесты.",
+          impact: "high",
+          effort: "medium",
+          impactLabel: "высокое",
+          effortLabel: "среднее",
+          metric: "Конверсия"
+        },
+        {
+          id: "mkt-bounce",
+          title: "Снизьте показатель отказов",
+          description: "Оптимизируйте посадочные страницы: релевантный контент, CTA и адаптация под мобильных пользователей.",
+          impact: "medium",
+          effort: "low",
+          impactLabel: "среднее",
+          effortLabel: "низкое",
+          metric: "Bounce rate"
+        },
+        {
+          id: "mkt-inefficient",
+          title: "Проверьте неэффективные каналы",
+          description: worstChannel ? `Канал ${worstChannel.segment} отстаёт по вкладу. Рассмотрите оптимизацию креативов или перераспределение бюджета.` : "Сформируйте список каналов с низким ROI для оптимизации или отключения.",
+          impact: "medium",
+          effort: "low",
+          impactLabel: "среднее",
+          effortLabel: "низкое",
+          metric: "Эффективность каналов"
+        },
+        {
+          id: "mkt-segments",
+          title: "Развивайте таргетинг по сегментам",
+          description: "Выделите наиболее вовлечённые сегменты и настройте персонализированные коммуникации и офферы.",
+          impact: "high",
+          effort: "high",
+          impactLabel: "высокое",
+          effortLabel: "высокое",
+          metric: "Сегментация"
+        }
+      ];
+    }
+    function buildFinancialRecommendations(ctx) {
+      const expenseColumn = ctx.expenseColumn;
+      const incomeColumn = ctx.incomeColumn || ctx.salesAmountColumn;
+      return [
+        {
+          id: "fin-expense",
+          title: "Оптимизируйте статьи расходов",
+          description: expenseColumn ? "Сфокусируйтесь на строках с наибольшей динамикой. Пересмотрите условия поставщиков и автоматизируйте повторяющиеся процессы." : "Добавьте детализацию расходов, чтобы отследить возможности оптимизации.",
+          impact: "high",
+          effort: "medium",
+          impactLabel: "высокое",
+          effortLabel: "среднее",
+          metric: "Расходы"
+        },
+        {
+          id: "fin-margin",
+          title: "Укрепите маржинальность",
+          description: "Пересмотрите портфель продуктов и ценовую стратегию. Используйте маржинальный анализ для корректировки ассортимента.",
+          impact: "high",
+          effort: "medium",
+          impactLabel: "высокое",
+          effortLabel: "среднее",
+          metric: "Маржа"
+        },
+        {
+          id: "fin-risk",
+          title: "Отслеживайте риски по прогнозу",
+          description: "Используйте сценарный анализ и стресс-тесты. Настройте пороговые значения для раннего предупреждения.",
+          impact: "medium",
+          effort: "medium",
+          impactLabel: "среднее",
+          effortLabel: "среднее",
+          metric: "Прогноз"
+        },
+        {
+          id: "fin-cashflow",
+          title: "Управляйте денежным потоком",
+          description: ctx.cashflowColumn ? "Оптимизируйте сроки оплат и инкассации, внедрите планирование движения денежных средств." : "Добавьте данные по cash-flow для контроля ликвидности.",
+          impact: "high",
+          effort: "medium",
+          impactLabel: "высокое",
+          effortLabel: "среднее",
+          metric: "Cash flow"
+        },
+        {
+          id: "fin-benchmark",
+          title: "Сравните показатели с бенчмарками",
+          description: "Используйте отраслевые стандарты, чтобы определить целевые значения по доходу, расходам и марже.",
+          impact: "medium",
+          effort: "high",
+          impactLabel: "среднее",
+          effortLabel: "высокое",
+          metric: "Бенчмаркинг"
+        }
+      ];
+    }
+
+    function buildGenericRecommendations(ctx) {
+      return [
+        {
+          id: "gen-data",
+          title: "Добавьте больше атрибутов",
+          description: "Дополните данные столбцами с датами, категориями и числовыми метриками для углублённого анализа.",
+          impact: "medium",
+          effort: "low",
+          impactLabel: "среднее",
+          effortLabel: "низкое",
+          metric: "Структура данных"
+        },
+        {
+          id: "gen-clean",
+          title: "Проверьте качество данных",
+          description: "Удалите дубликаты, заполните пропуски и выровняйте форматы чисел и дат.",
+          impact: "medium",
+          effort: "medium",
+          impactLabel: "среднее",
+          effortLabel: "среднее",
+          metric: "Качество"
+        },
+        {
+          id: "gen-context",
+          title: "Опишите бизнес-контекст",
+          description: "Добавьте пояснения к метрикам, чтобы команда быстрее интерпретировала результаты.",
+          impact: "low",
+          effort: "low",
+          impactLabel: "низкое",
+          effortLabel: "низкое",
+          metric: "Документация"
+        }
+      ];
+    }
+
+    function summarize(ctx, key, formatter) {
+      const column = ctx[`${key}Column`] || ctx.primaryMetric;
+      if (!column) return { unavailable: true };
+      const values = ctx.rows.map(row => parseNumber(row[column])).filter(v => !isNaN(v));
+      if (!values.length) return { unavailable: true };
+      const sum = values.reduce((a, b) => a + b, 0);
+      return { value: formatter ? formatter(sum) : formatNumber(sum), details: column };
+    }
+
+    function averageMetric(ctx, valueKey, quantityKey, formatter) {
+      const valueColumn = ctx[`${valueKey}Column`] || ctx.primaryMetric;
+      const quantityColumn = ctx[`${quantityKey}Column`];
+      if (!valueColumn || !quantityColumn) return { unavailable: true };
+      const numerator = ctx.rows.map(row => parseNumber(row[valueColumn])).filter(v => !isNaN(v)).reduce((a, b) => a + b, 0);
+      const denominator = ctx.rows.map(row => parseNumber(row[quantityColumn])).filter(v => !isNaN(v)).reduce((a, b) => a + b, 0);
+      if (!denominator) return { unavailable: true };
+      const avg = numerator / denominator;
+      return { value: formatter ? formatter(avg) : formatNumber(avg), details: `${valueColumn} / ${quantityColumn}` };
+    }
+
+    function topSegments(ctx, key, valueKey) {
+      const segmentColumn = ctx[`${key}Column`] || ctx.segmentColumn;
+      const valueColumn = ctx[`${valueKey}Column`] || ctx.primaryMetric;
+      if (!segmentColumn || !valueColumn) return { unavailable: true };
+      const segments = aggregateBySegment(ctx.rows, segmentColumn, valueColumn, 3);
+      if (!segments.length) return { unavailable: true };
+      return { value: segments.map(item => item.segment).join(", "), details: `Топ-3 по ${valueColumn}` };
+    }
+
+    function trendMetric(ctx, key, valueKey) {
+      const dateColumn = ctx[`${key}Column`] || ctx.dateColumn;
+      const valueColumn = ctx[`${valueKey}Column`] || ctx.primaryMetric;
+      if (!dateColumn || !valueColumn) return { unavailable: true };
+      const timeline = aggregateByDate(ctx.rows, dateColumn, valueColumn);
+      if (timeline.length < 2) return { unavailable: true };
+      const first = timeline[0].value;
+      const last = timeline[timeline.length - 1].value;
+      const trend = ((last - first) / Math.max(first, 1)) * 100;
+      return { value: `${trend >= 0 ? "+" : ""}${trend.toFixed(1)}%`, details: `${dateColumn} vs ${valueColumn}` };
+    }
+
+    function conversionMetric(ctx) {
+      const conversionColumn = ctx.conversionColumn;
+      const sessionsColumn = ctx.sessionsColumn || ctx.quantityColumn;
+      if (!conversionColumn || !sessionsColumn) return { unavailable: true };
+      const conversions = ctx.rows.map(row => parseNumber(row[conversionColumn])).filter(v => !isNaN(v)).reduce((a, b) => a + b, 0);
+      const sessions = ctx.rows.map(row => parseNumber(row[sessionsColumn])).filter(v => !isNaN(v)).reduce((a, b) => a + b, 0);
+      if (!sessions) return { unavailable: true };
+      const rate = conversions / sessions;
+      return { value: percentageFormatter(rate), details: `${conversionColumn} / ${sessionsColumn}` };
+    }
+
+    function segmentSummary(ctx, key, valueKey) {
+      const segmentColumn = ctx[`${key}Column`] || ctx.segmentColumn;
+      const valueColumn = ctx[`${valueKey}Column`] || ctx.primaryMetric;
+      if (!segmentColumn || !valueColumn) return { unavailable: true };
+      const segments = aggregateBySegment(ctx.rows, segmentColumn, valueColumn, 5);
+      if (!segments.length) return { unavailable: true };
+      return { value: segments.map(item => `${item.segment}: ${formatNumber(item.value)}`).join(" · "), details: segmentColumn };
+    }
+
+    function cacMetric(ctx) {
+      const costColumn = ctx.costColumn;
+      const sessionsColumn = ctx.sessionsColumn;
+      if (!costColumn || !sessionsColumn) return { unavailable: true };
+      const cost = ctx.rows.map(row => parseNumber(row[costColumn])).filter(v => !isNaN(v)).reduce((a, b) => a + b, 0);
+      const sessions = ctx.rows.map(row => parseNumber(row[sessionsColumn])).filter(v => !isNaN(v)).reduce((a, b) => a + b, 0);
+      if (!sessions) return { unavailable: true };
+      const cac = cost / sessions;
+      return { value: formatCurrency(cac), details: `${costColumn} / ${sessionsColumn}` };
+    }
+
+    function marginMetric(ctx) {
+      const marginColumn = ctx.marginColumn;
+      const incomeColumn = ctx.incomeColumn;
+      const expenseColumn = ctx.expenseColumn;
+      if (marginColumn) {
+        const values = ctx.rows.map(row => parseNumber(row[marginColumn])).filter(v => !isNaN(v));
+        if (!values.length) return { unavailable: true };
+        const avg = values.reduce((a, b) => a + b, 0) / values.length;
+        return { value: percentageFormatter(avg), details: marginColumn };
+      }
+      if (incomeColumn && expenseColumn) {
+        const income = ctx.rows.map(row => parseNumber(row[incomeColumn])).filter(v => !isNaN(v)).reduce((a, b) => a + b, 0);
+        const expense = ctx.rows.map(row => parseNumber(row[expenseColumn])).filter(v => !isNaN(v)).reduce((a, b) => a + b, 0);
+        if (!income) return { unavailable: true };
+        const margin = (income - expense) / income;
+        return { value: percentageFormatter(margin), details: `${incomeColumn} vs ${expenseColumn}` };
+      }
+      return { unavailable: true };
+    }
+
+    function forecastMetric(ctx) {
+      const dateColumn = ctx.dateColumn;
+      const valueColumn = ctx.incomeColumn || ctx.primaryMetric;
+      if (!dateColumn || !valueColumn) return { unavailable: true };
+      const timeline = aggregateByDate(ctx.rows, dateColumn, valueColumn);
+      if (timeline.length < 3) return { unavailable: true };
+      const lastValues = timeline.slice(-3).map(item => item.value);
+      const trend = lastValues.reduce((acc, val, idx) => acc + val * (idx + 1), 0) / lastValues.reduce((acc, _, idx) => acc + (idx + 1), 0);
+      return { value: formatNumber(trend), details: "Прогноз на следующий период" };
+    }
+
+    function detectDecline(ctx) {
+      const dateColumn = ctx.dateColumn;
+      const segmentColumn = ctx.productColumn || ctx.segmentColumn;
+      const valueColumn = ctx.salesAmountColumn || ctx.primaryMetric;
+      if (!dateColumn || !segmentColumn || !valueColumn) return [];
+      const groups = new Map();
+      ctx.rows.forEach(row => {
+        const segment = row[segmentColumn] ?? "Без сегмента";
+        if (!groups.has(segment)) groups.set(segment, []);
+        groups.get(segment).push(row);
+      });
+      const declining = [];
+      groups.forEach((rows, segment) => {
+        const timeline = aggregateByDate(rows, dateColumn, valueColumn);
+        if (timeline.length >= 2 && timeline[timeline.length - 1].value < timeline[0].value) {
+          declining.push({ segment, change: timeline[timeline.length - 1].value - timeline[0].value });
+        }
+      });
+      return declining.sort((a, b) => a.change - b.change);
+    }
+
+    function formatNumber(value) {
+      if (value === null || value === undefined || isNaN(value)) return "—";
+      return new Intl.NumberFormat("ru-RU", { maximumFractionDigits: 2 }).format(value);
+    }
+
+    function formatCurrency(value) {
+      if (value === null || value === undefined || isNaN(value)) return "—";
+      return new Intl.NumberFormat("ru-RU", { style: "currency", currency: "RUB", maximumFractionDigits: 0 }).format(value);
+    }
+
+    function percentageFormatter(value) {
+      if (value === null || value === undefined || isNaN(value)) return "—";
+      return `${(value * 100).toFixed(1)}%`;
+    }
+
+    function sumFormatter(value) {
+      return formatCurrency(value);
+    }
+
+    function averageFormatter(value) {
+      return formatCurrency(value);
+    }
+
+    function parseNumber(value) {
+      if (value === null || value === undefined || value === "") return NaN;
+      if (typeof value === "number") return value;
+      if (typeof value === "string") {
+        const normalized = value.replace(/\s+/g, "").replace(/,(\d{1,2})$/, ".$1");
+        const parsed = parseFloat(normalized.replace(/[^0-9.-]/g, ""));
+        return isNaN(parsed) ? NaN : parsed;
+      }
+      return NaN;
+    }
+
+    function parseDate(value) {
+      if (!value) return null;
+      if (value instanceof Date && !isNaN(value)) return value;
+      if (typeof value === "number") {
+        const date = new Date(value);
+        return isNaN(date) ? null : date;
+      }
+      if (typeof value === "string") {
+        const normalized = value.replace(/\./g, "-").replace(/\//g, "-");
+        const parts = normalized.split("-");
+        if (parts.length === 3) {
+          const [a, b, c] = parts;
+          const year = a.length === 4 ? a : c;
+          const month = a.length === 4 ? b : a;
+          const day = a.length === 4 ? c : b;
+          const date = new Date(`${year}-${month}-${day}`);
+          if (!isNaN(date)) return date;
+        }
+        const date = new Date(value);
+        return isNaN(date) ? null : date;
+      }
+      return null;
+    }
+
+    function generateColor(index) {
+      const palette = ["#4f46e5", "#0ea5e9", "#10b981", "#f97316", "#ec4899", "#22c55e", "#a855f7", "#14b8a6", "#f59e0b", "#38bdf8"];
+      return palette[index % palette.length];
+    }
+  </script>
 </body>
 </html>
